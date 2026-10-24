@@ -23,25 +23,34 @@ Aplicación web para modernizar la gestión de un taller mecánico: clientes, ve
 - Autenticación por token `auth_key`
 - Git y GitHub Projects para la gestión del proyecto
 
+## Base de datos
+
+La base de datos `monkey_garage` tiene 5 tablas, una por cada clase del modelo:
+
+- **usuario**: cuentas de acceso de todos los perfiles. El campo `login` es el email del cliente o el código del personal (por ejemplo `MC01`), y el campo `rol` decide qué ve cada uno.
+- **cliente**: datos personales del cliente (DNI como clave primaria).
+- **vehiculo**: coches de los clientes (matrícula como clave primaria). Un cliente puede tener varios vehículos.
+- **cita**: citas y reparaciones de un vehículo, con el mecánico asignado, el estado y las horas y materiales imputados.
+- **factura**: factura de una cita finalizada, con mano de obra, repuestos, IVA y total.
+
 ## Estructura del proyecto
 
 | Carpeta | Contenido |
 |---|---|
-| `/modelo` | Clases PHP (Conexion, Usuario, Cliente, Vehiculo, Cita, Factura) |
-| `/servicios` | Endpoints `*_sw.php` que devuelven JSON |
-| `/vistas` | Páginas HTML y CSS |
-| `/js` | Controladores de vista (fetch y DOM) |
-| `/db` | Scripts SQL |
-| `/docs` | Diagrama E-R y memoria |
+| `backend/model` | Clases PHP (Conexion, Usuario, Cliente, Vehiculo, Cita, Factura) |
+| `backend` | Endpoints `*_sw.php` que devuelven JSON |
+| `frontend` | Páginas HTML, CSS (`css/`) y JavaScript (`js/`) |
+| `db` | Script SQL de la base de datos |
+| `docs` | Memoria y documentación |
 
 ## Instalación
 
-> Pendiente de completar cuando esté lista la base de datos.
+## Instalación
 
-1. Clonar el repositorio.
-2. Importar el script de `/db` en MySQL/MariaDB.
-3. Copiar `config.example.php` como `config.php` y poner las credenciales.
-4. Servir la carpeta con Apache/XAMPP y abrir el navegador.
+1. Arrancar **Apache** y **MySQL** desde el panel de XAMPP.
+2. Clonar el repositorio dentro de `C:\xampp\htdocs`.
+3. Importar `db/monkey_garage.sql` en MySQL (phpMyAdmin → Importar, o SQLyog → Tools → Execute SQL Script). El script crea la base de datos `monkey_garage` con sus 5 tablas.
+4. Copiar `config.example.php` como `config.php` y poner los datos de conexión. Este archivo no se sube a GitHub.
 
 ## Gestión del proyecto
 
