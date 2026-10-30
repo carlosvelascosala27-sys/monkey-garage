@@ -7,4 +7,7 @@ return [
     'user'     => 'usuario',
     'password' => 'contraseña',
     'charset'  => 'utf8mb4',
+    'tarifa_hora' => 45.00,
+    'iva' => 0.21,
+    'duracion_token' => 8, // horas
 ];
