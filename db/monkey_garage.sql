@@ -112,6 +112,7 @@ CREATE TABLE `usuario` (
   `nombre` varchar(100) NOT NULL,
   `rol` enum('admin','oficina','mecanico','cliente') NOT NULL,
   `auth_key` varchar(64) DEFAULT NULL,
+  `auth_expira` datetime DEFAULT NULL,
   PRIMARY KEY (`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
