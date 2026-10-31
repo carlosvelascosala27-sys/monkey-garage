@@ -74,5 +74,18 @@ class Cliente{
         return $stmt->execute();
     }
 
+    public static function getArray(){
+        try{
+            $conexion = Conexion::getInstance();
+            $pdo = $conexion->getConnection();
+            $sql = "SELECT dni, usuario_login, nombre, apellidos, telefono FROM cliente";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }catch(Exception $e){
+            throw new Exception($e->getMessage(), 1);
+        }
+    }
+
 
 }
