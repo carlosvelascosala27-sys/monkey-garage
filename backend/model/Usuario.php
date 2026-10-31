@@ -11,7 +11,7 @@ class Usuario{
 
     public function __construct($login, $password, $nombre, $rol){
         $this->login = $login;
-        $this->password = $password;
+        $this->password = $this->cifrado($password);
         $this->nombre = $nombre;
         $this->rol = $rol;
     }
@@ -28,12 +28,28 @@ class Usuario{
     public function __set($property, $valor){
         $set = ['password', 'nombre', 'rol'];
         if(in_array($property, $set, true)){
-            return $this->$property = $valor;
+            if ($property === 'password'){
+                $this->$property = $this->cifrado($valor);
+            }else {
+                $this->$property = $valor;
+
+            }
+
         } else{
             throw new Exception("El atributo $property no se puede escribir", 1);
 
         }
 
+    }
+
+    private function cifrado($texto){
+        $hash = password_hash($texto, PASSWORD_BCRYPT);
+        return  $hash;
+
+    }
+
+    public function verificarPassword($password){
+        return password_verify($password, $this->password);
     }
 
     public function insert() {

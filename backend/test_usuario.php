@@ -6,6 +6,14 @@ $u = new Usuario('prueba@test.com', 'temporal', 'Prueba', 'cliente');
 echo "Insert: ";
 var_dump($u->insert());
 echo "<br>";
+// Comprobar contraseña con password_verify
+echo "Verificar correcta: ";
+var_dump($u->verificarPassword('temporal'));
+echo "<br>";
+
+echo "Verificar incorrecta: ";
+var_dump($u->verificarPassword('otra'));
+echo "<br>";
 
 // 2. Leer (login y nombre sí, password no)
 echo "Login: " . $u->login . "<br>";
