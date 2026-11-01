@@ -1,0 +1,41 @@
+:root {
+    --verde: #7c9121;
+    --verde-texto: #9fb82c;
+    --negro: #000000;
+    --blanco: #ffffff;
+    --gris: #998d8d;
+}
+
+body {
+    margin: 0;
+    font-family: 'Black Ops One', sans-serif;
+    background: var(--negro);
+    color: var(--blanco);
+}
+input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-top: 10px;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 1px solid var(--blanco);
+    border-radius: 9px;
+}
+
+input::placeholder {
+    color: var(--gris);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background: var(--verde);
+    color: var(--negro);
+    border: none;
+    border-radius: 9px;
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+}

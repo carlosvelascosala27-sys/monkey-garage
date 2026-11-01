@@ -74,7 +74,7 @@ class Cliente{
         return $stmt->execute();
     }
 
-    public static function getArray(){
+    public static function getCliente(){
         try{
             $conexion = Conexion::getInstance();
             $pdo = $conexion->getConnection();
