@@ -116,6 +116,46 @@
     text-align: center;
 }
 
+.registro .tarjeta-login form {
+    gap: 10px;
+}
+
+.registro .tarjeta-login input {
+    padding: 12px;
+}
+
+.registro .tarjeta-login {
+    padding-bottom: 56px;
+}
+.registro .tarjeta-login p {
+    font-size: 20px;
+    color: var(--blanco);
+    margin: 0;
+}
+
+.recuperar .tarjeta-login h2,
+.recuperar .tarjeta-login p {
+    text-align: center;
+    margin: 0;
+}
+
+.recuperar .tarjeta-login h2 {
+    font-size: 30px;
+}
+
+.recuperar .tarjeta-login p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.recuperar .tarjeta-login form {
+    gap: 0;
+}
+
+.recuperar .tarjeta-login button {
+    margin-top: 14px;
+}
+
 @media (max-width: 1024px) {
     .pagina {
         flex-direction: column;
