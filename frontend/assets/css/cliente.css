@@ -1,0 +1,193 @@
+.pagina {
+    display: flex;
+    height: 100vh;
+}
+
+.panel-izquierdo {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 40px;
+    height: 100%;
+    box-sizing: border-box;
+    background: url('../img/imagen-izquierda-login.jpg') center / cover no-repeat;
+    background-color: #111;
+    text-align: center;
+}
+
+.panel-izquierdo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0));
+}
+
+.panel-izquierdo > * {
+    position: relative;
+}
+
+.panel-izquierdo img {
+    display: none;
+}
+
+.panel-izquierdo h1 {
+    justify-content: center;
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 56px;
+    color: var(--blanco);
+
+}
+
+.panel-izquierdo p {
+    justify-content: center;
+    font-family: 'Black Ops One', sans-serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--verde-texto);
+    margin: -20px 0 0 0;
+
+}
+
+.fondo-derecho {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    height: 100vh;
+    box-sizing: border-box;
+    min-height: auto;
+    background: url('../img/imagen-derecha-login.jpg') center / cover no-repeat;
+    background-color: #111;
+}
+
+.tarjeta-login {
+    flex: 0 0 520px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 40px;
+    box-sizing: border-box;
+    background: url('../img/panel-login.png') center / 100% 100% no-repeat;
+}
+
+.tarjeta-login img {
+    width: 200px;
+}
+
+.tarjeta-login h2 {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 36px;
+    color: var(--blanco);
+    margin: 0;
+}
+
+.tarjeta-login form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.tarjeta-login input {
+    font-size: 20px;
+    padding: 16px;
+}
+
+.tarjeta-login button {
+    font-size: 24px;
+    padding: 16px;
+}
+
+.tarjeta-login a {
+    color: var(--verde-texto);
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 18px;
+}
+.tarjeta-login .errores {
+    min-height: 24px;
+    color: #ff6b6b;
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+.registro .tarjeta-login form {
+    gap: 10px;
+}
+
+.registro .tarjeta-login input {
+    padding: 12px;
+}
+
+.registro .tarjeta-login {
+    padding-bottom: 56px;
+}
+.registro .tarjeta-login p {
+    font-size: 20px;
+    color: var(--blanco);
+    margin: 0;
+}
+
+.recuperar .tarjeta-login h2,
+.recuperar .tarjeta-login p {
+    text-align: center;
+    margin: 0;
+}
+
+.recuperar .tarjeta-login h2 {
+    font-size: 30px;
+}
+
+.recuperar .tarjeta-login p {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.recuperar .tarjeta-login form {
+    gap: 0;
+}
+
+.recuperar .tarjeta-login button {
+    margin-top: 14px;
+}
+
+@media (max-width: 1024px) {
+    .pagina {
+        flex-direction: column;
+        position: relative;
+    }
+
+    .fondo-derecho {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 100vh;
+        z-index: 2;
+    }
+
+    .panel-izquierdo {
+        min-height: 100vh;
+    }
+
+    .tarjeta-login {
+        flex: none;
+        width: 100%;
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pagina {
+        flex-direction: column;
+    }
+    .tarjeta-login {
+        flex: none;
+        width: 100%;
+    }
+}
