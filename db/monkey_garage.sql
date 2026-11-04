@@ -125,9 +125,16 @@ CREATE TABLE `vehiculo` (
   `cliente_dni` varchar(9) NOT NULL,
   `marca` varchar(50) NOT NULL,
   `modelo` varchar(50) NOT NULL,
+  `anio` smallint(6) DEFAULT NULL,
+  `color` varchar(30) DEFAULT NULL,
+  `combustible` enum('gasolina','diesel','hibrido','electrico','glp') DEFAULT NULL,
+  `transmision` enum('manual','automatico') DEFAULT NULL,
+  `kilometros` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`matricula`),
   KEY `cliente_dni` (`cliente_dni`),
-  CONSTRAINT `vehiculo_ibfk_1` FOREIGN KEY (`cliente_dni`) REFERENCES `cliente` (`dni`) ON UPDATE CASCADE
+  CONSTRAINT `vehiculo_ibfk_1` FOREIGN KEY (`cliente_dni`) REFERENCES `cliente` (`dni`) ON UPDATE CASCADE,
+  CONSTRAINT `chk_vehiculo_anio` CHECK (`anio` is null or `anio` >= 1900),
+  CONSTRAINT `chk_vehiculo_kilometros` CHECK (`kilometros` >= 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
