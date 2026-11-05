@@ -1,0 +1,477 @@
+body.panel-cliente {
+    margin: 0;
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 24px 16px;
+    box-sizing: border-box;
+    background: #0a0a0a;
+    border-right: 1px solid #1f1f1f;
+}
+
+.sidebar .usuario {
+    margin-top: auto;
+}
+.cerrar-sesion {
+    margin-top: 12px;
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    color: var(--gris);
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.cerrar-sesion:hover {
+    color: #f55;
+    border-color: #f55;
+}
+
+.contenido {
+    flex: 1;
+    padding: 32px;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.logo img {
+    width: 150px;
+    height: 60px;
+}
+
+.logo span {
+    font-family: 'Black Ops One', sans-serif;
+    font-size: 20px;
+    color: var(--blanco);
+}
+
+.seccion {
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin: 24px 0 8px;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar nav a {
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: var(--gris);
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebar nav a:hover {
+    color: var(--blanco);
+    background: #1a1a1a;
+}
+
+.sidebar nav a.activo {
+    color: var(--verde-texto);
+    background: #1a1a1a;
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    color: var(--blanco);
+    text-decoration: none;
+    border: 1px solid #1f1f1f;
+}
+
+.usuario .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--verde);
+    color: var(--negro);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.usuario small {
+    display: block;
+    color: var(--gris);
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.cabecera .ruta {
+    font-size: 15px;
+    color: var(--gris);
+    margin: 0 0 6px 0;
+}
+
+.cabecera h1 {
+    font-size: 30px;
+    margin: 0;
+}
+
+.btn-nueva-cita {
+    flex: 0 0 auto;
+    width: auto;
+    white-space: nowrap;
+    padding: 12px 22px;
+    background: var(--verde);
+    color: var(--negro);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.tarjetas-resumen {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.tarjeta {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.tarjeta .etiqueta {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--gris);
+    margin: 0 0 10px 0;
+}
+
+.tarjeta .valor {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 6px;
+}
+
+.tarjeta small {
+    color: var(--gris);
+    font-size: 15px;
+}
+
+.cabecera-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.cabecera-seccion h2 {
+    font-size: 22px;
+    margin: 0;
+}
+
+.cabecera-seccion a {
+    color: var(--verde-texto);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.reparacion,
+.citas,
+.vehiculos,
+.facturas {
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.piezas {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0 0 0;
+}
+
+.piezas li {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 17px;
+}
+
+.piezas .codigo {
+    font-family: monospace;
+    font-size: 15px;
+    color: var(--verde-texto);
+}
+
+.piezas li > span:last-child {
+    text-align: right;
+    color: var(--gris);
+    font-size: 17px;
+}
+
+.vehiculo-reparacion {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.matricula {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.estado {
+    margin-left: auto;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 15px;
+    background: #1a2a10;
+    color: var(--verde-texto);
+}
+
+.progreso {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.progreso li {
+    flex: 1;
+    padding-top: 8px;
+    border-top: 3px solid #2a2a2a;
+    font-size: 15px;
+    color: var(--gris);
+}
+
+.progreso li.activo {
+    border-top-color: var(--verde);
+    color: var(--verde-texto);
+}
+
+.motivo {
+    color: var(--gris);
+    font-size: 15px;
+}
+
+.datos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.datos article {
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.lista-vehiculos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.vehiculo {
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.vehiculo-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.vehiculo h3 {
+    margin: 0 0 6px 0;
+    font-size: 22px;
+}
+
+.color {
+    font-size: 15px;
+    color: var(--gris);
+    margin: 0 0 14px 0;
+}
+
+.punto {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.punto.rojo { background: #d33; }
+.punto.blanco { background: #fff; }
+
+.vehiculo .datos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.vehiculo-pie {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 14px;
+    font-size: 15px;
+    color: var(--gris);
+}
+
+.vehiculo-pie a {
+    color: var(--verde-texto);
+    text-decoration: none;
+}
+
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.facturas table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.facturas th {
+    text-align: left;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--gris);
+    padding: 10px 8px;
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.facturas td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.facturas .numero {
+    text-align: right;
+}
+
+.facturas .total {
+    font-weight: bold;
+    color: var(--verde-texto);
+}
+
+.facturas td a {
+    color: var(--verde-texto);
+    text-decoration: none;
+}
+
+.lista-citas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.cita {
+    display: flex;
+    gap: 16px;
+    background: #0a0a0a;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.cabecera-seccion .acciones {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-añadir {
+    padding: 8px 14px;
+    background: var(--verde);
+    color: var(--negro);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.paginador {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.paginador a {
+    padding: 8px 14px;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: var(--gris);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.paginador a.activo {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: var(--negro);
+}
