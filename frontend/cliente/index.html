@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Monkey Garage - Panel del cliente</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/comun.css">
+        <link rel="stylesheet" href="../assets/css/panel-cliente.css">
+    </head>
+    <body class="panel-cliente">
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="logo">
+                    <img src="../assets/img/logo.png" alt="Logo Monkey Garage">
+                    <span>Monkey Garage</span>
+                </div>
+
+                <p class="seccion">Área de cliente</p>
+                <nav>
+                    <a href="#" class="activo">Resumen</a>
+                    <a href="#">Mis vehículos</a>
+                    <a href="#">Citas</a>
+                    <a href="#">Reparaciones</a>
+                    <a href="#">Facturas</a>
+                </nav>
+
+                <a href="#" class="usuario">
+                    <span class="avatar">AG</span>
+                    <div>
+                        <strong>Ana García</strong>
+                        <small>ana.garcia@correo.com</small>
+                    </div>
+                </a>
+                <button type="button" class="cerrar-sesion">Cerrar sesión</button>
+            </aside>
+
+            <main class="contenido">
+                <header class="cabecera">
+                    <div>
+                        <p class="ruta">Área de cliente / Resumen</p>
+                        <h1>Buenos días, Ana</h1>
+                    </div>
+                    <button type="button" class="btn-nueva-cita">+ Nueva cita</button>
+                </header>
+
+                <section class="tarjetas-resumen">
+                    <article class="tarjeta">
+                        <p class="etiqueta">Vehículos</p>
+                        <strong class="valor">2</strong>
+                        <small>Registrados a tu nombre</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Citas activas</p>
+                        <strong class="valor">2</strong>
+                        <small>1 pendiente de confirmar</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">En reparación</p>
+                        <strong class="valor">1</strong>
+                        <small>Renault Clio</small>
+                    </article>
+                    
+                </section>
+
+                <section class="reparacion">
+                    <header class="cabecera-seccion">
+                        <h2>Reparación en curso</h2>
+                        <a href="#">Ver detalle</a>
+                    </header>
+
+                    <div class="vehiculo-reparacion">
+                        <span class="matricula">5678 RST</span>
+                        <div>
+                            <strong>Renault Clio</strong>
+                            <small>Cita #14 · 26/10/2026 · 08:30</small>
+                        </div>
+                        <span class="estado">En reparación</span>
+                    </div>
+
+                    <ol class="progreso">
+                        <li>Pendiente</li>
+                        <li>Confirmada</li>
+                        <li class="activo">En reparación</li>
+                        <li>Finalizada</li>
+                    </ol>
+
+                    <p class="motivo">Motivo: Ruido al frenar, revisar pastillas delanteras.</p>
+
+                    <div class="datos">
+                        <article>
+                            <p class="etiqueta">Mecánico</p>
+                            <strong>Javier Ruiz</strong>
+                        </article>
+                        <article>
+                            <p class="etiqueta">Horas trabajadas</p>
+                            <strong>1,5 h</strong>
+                        </article>
+                        <article>
+                            <p class="etiqueta">Materiales</p>
+                            <strong>51,90 €</strong>
+                        </article>
+                    </div>
+
+                    <h3>Piezas usadas</h3>
+                    <ul class="piezas">
+                        <li>
+                            <span class="codigo">FR-PD-112</span>
+                            <span>Pastillas de freno delanteras</span>
+                            <span>42,00 €</span>
+                        </li>
+                        <li>
+                            <span class="codigo">LQ-DOT4</span>
+                            <span>Líquido de frenos DOT 4</span>
+                            <span>9,90 €</span>
+                        </li>
+                    </ul>
+                </section>
+
+
+                <section class="citas">
+                    <header class="cabecera-seccion">
+                        <h2>Próximas citas</h2>
+                        <div class="acciones">
+                            <a href="#">Ver todas</a>
+                            <button type="button" class="btn-añadir">+ Añadir cita</button>
+                        </div>
+                    </header>
+
+                    <div class="lista-citas">
+                        <article class="cita">
+                            <div class="fecha">
+                                <small>NOV</small>
+                                <strong>05</strong>
+                            </div>
+                            <div>
+                                <strong>Revisión de los 60.000 km</strong>
+                                <small>· Seat León · 1234 KLM · 10:00</small>
+                                <span class="estado pendiente">Pendiente</span>
+                            </div>
+                        </article>
+
+                        <article class="cita">
+                            <div class="fecha">
+                                <small>DIC</small>
+                                <strong>12</strong>
+                            </div>
+                            <div>
+                                <strong>Cambio de neumáticos</strong>
+                                <small>· Renault Clio · 5678 RST · 09:30</small>
+                                <span class="estado confirmada">Confirmada</span>
+                            </div>
+                        </article>
+                    </div>
+                    <nav class="paginador">
+                        <a href="#">Anterior</a>
+                        <a href="#" class="activo">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">Siguiente</a>
+                    </nav>
+                </section>
+                
+
+                <section class="vehiculos">
+                    <header class="cabecera-seccion">
+                        <h2>Mis vehículos</h2>
+                    </header>
+
+                    <div class="lista-vehiculos">
+                        <article class="vehiculo">
+                            <header class="vehiculo-cabecera">
+                                <span class="matricula">5678 RST</span>
+                                <span class="estado">En reparación</span>
+                            </header>
+                            <h3>Renault Clio</h3>
+                            
+
+                            <div class="datos">
+                                <div><p class="etiqueta">Año</p><strong>2015</strong></div>
+                                <div><p class="etiqueta">Combustible</p><strong>Diésel</strong></div>
+                                <div><p class="etiqueta">Transmisión</p><strong>Manual</strong></div>
+                                <div><p class="etiqueta">Kilómetros</p><strong>142.000 km</strong></div>
+                            </div>
+
+                            <footer class="vehiculo-pie">
+                                <small>3 citas · última: en reparación</small>
+                                <a href="#">Historial</a>
+                                <a href="#">Editar</a>
+                            </footer>
+                        </article>
+
+                        <article class="vehiculo">
+                            <header class="vehiculo-cabecera">
+                                <span class="matricula">1234 KLM</span>
+                                <span class="estado pendiente">Pendiente</span>
+                            </header>
+                            <h3>Seat León</h3>
+
+                            <div class="datos">
+                                <div><p class="etiqueta">Año</p><strong>2018</strong></div>
+                                <div><p class="etiqueta">Combustible</p><strong>Gasolina</strong></div>
+                                <div><p class="etiqueta">Transmisión</p><strong>Manual</strong></div>
+                                <div><p class="etiqueta">Kilómetros</p><strong>85.000 km</strong></div>
+                            </div>
+
+                            <footer class="vehiculo-pie">
+                                <small>3 citas · última: pendiente</small>
+                                <a href="#">Historial</a>
+                                <a href="#">Editar</a>
+                            </footer>
+                        </article>
+
+                        
+                    </div>
+                </section>
+                
+
+                <section class="facturas">
+                <header class="cabecera-seccion">
+                    <h2>Facturas recientes</h2>
+                    <a href="#">Ver todas</a>
+                </header>
+
+                <div class="tabla-contenedor">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nº</th>
+                                <th>Fecha</th>
+                                <th>Vehículo</th>
+                                <th>Cita</th>
+                                <th class="numero">Mano de obra</th>
+                                <th class="numero">Repuestos</th>
+                                <th class="numero">Subtotal</th>
+                                <th class="numero">IVA 21 %</th>
+                                <th class="numero">Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>4</td>
+                                <td>15/10/2026</td>
+                                <td>Seat León</td>
+                                <td>#12</td>
+                                <td class="numero">90,00 €</td>
+                                <td class="numero">30,00 €</td>
+                                <td class="numero">120,00 €</td>
+                                <td class="numero">25,20 €</td>
+                                <td class="numero total">145,20 €</td>
+                                <td><a href="#">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>02/09/2026</td>
+                                <td>Renault Clio</td>
+                                <td>#9</td>
+                                <td class="numero">140,00 €</td>
+                                <td class="numero">118,36 €</td>
+                                <td class="numero">258,36 €</td>
+                                <td class="numero">54,26 €</td>
+                                <td class="numero total">312,62 €</td>
+                                <td><a href="#">Ver</a></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>18/06/2026</td>
+                                <td>Seat León</td>
+                                <td>#4</td>
+                                <td class="numero">60,00 €</td>
+                                <td class="numero">14,00 €</td>
+                                <td class="numero">74,00 €</td>
+                                <td class="numero">15,54 €</td>
+                                <td class="numero total">89,54 €</td>
+                                <td><a href="#">Ver</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav class="paginador">
+                    <a href="#">Anterior</a>
+                    <a href="#" class="activo">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">Siguiente</a>
+                </nav>
+            </section>
+            </main>
+        </div>
+        
+    </body>
+</html>

@@ -85,35 +85,35 @@ insert  into `repuesto`(`id_repuesto`,`referencia`,`nombre`,`precio`,`stock`) va
 
 /*Data for the table `usuario` */
 
-insert  into `usuario`(`login`,`password`,`nombre`,`rol`,`auth_key`) values 
-('AD01','provisional','Administrador','admin',NULL),
-('ana@correo.com','provisional','Ana Belmonte','cliente',NULL),
-('david@correo.com','provisional','David Soler','cliente',NULL),
-('elena@correo.com','provisional','Elena Prieto','cliente',NULL),
-('juan@correo.com','provisional','Juan Martínez','cliente',NULL),
-('maria@correo.com','provisional','María López','cliente',NULL),
-('MC01','provisional','Pedro Sánchez','mecanico',NULL),
-('MC02','provisional','Andrés Ruiz','mecanico',NULL),
-('MC03','provisional','Lucía Ferrer','mecanico',NULL),
-('MC04','provisional','Javier Ortega','mecanico',NULL),
-('OF01','provisional','Laura Gómez','oficina',NULL),
-('OF02','provisional','Sergio Molina','oficina',NULL),
-('pablo@correo.com','provisional','Pablo Cano','cliente',NULL);
+insert  into `usuario`(`login`,`password`,`nombre`,`rol`,`auth_key`,`auth_expira`) values 
+('AD01','provisional','Administrador','admin',NULL,NULL),
+('ana@correo.com','provisional','Ana Belmonte','cliente',NULL,NULL),
+('david@correo.com','provisional','David Soler','cliente',NULL,NULL),
+('elena@correo.com','provisional','Elena Prieto','cliente',NULL,NULL),
+('juan@correo.com','provisional','Juan Martínez','cliente',NULL,NULL),
+('maria@correo.com','provisional','María López','cliente',NULL,NULL),
+('MC01','provisional','Pedro Sánchez','mecanico',NULL,NULL),
+('MC02','provisional','Andrés Ruiz','mecanico',NULL,NULL),
+('MC03','provisional','Lucía Ferrer','mecanico',NULL,NULL),
+('MC04','provisional','Javier Ortega','mecanico',NULL,NULL),
+('OF01','provisional','Laura Gómez','oficina',NULL,NULL),
+('OF02','provisional','Sergio Molina','oficina',NULL,NULL),
+('pablo@correo.com','provisional','Pablo Cano','cliente',NULL,NULL);
 
 /*Data for the table `vehiculo` */
 
-insert  into `vehiculo`(`matricula`,`cliente_dni`,`marca`,`modelo`) values 
-('0123YZB','67890123F','Citroën','C3'),
-('1234ABC','12345678A','Seat','Ibiza'),
-('2345RST','45678901D','Peugeot','208'),
-('2468KLM','89012345H','Audi','A3'),
-('3456JKL','34567890C','Toyota','Corolla'),
-('4567CDF','78901234G','Fiat','Panda'),
-('5678DEF','12345678A','Renault','Clio'),
-('6789VWX','56789012E','Opel','Corsa'),
-('7890MNP','45678901D','Volkswagen','Golf'),
-('8901GHJ','89012345H','BMW','Serie 1'),
-('9012GHI','23456789B','Ford','Focus');
+insert  into `vehiculo`(`matricula`,`cliente_dni`,`marca`,`modelo`,`anio`,`color`,`combustible`,`transmision`,`kilometros`) values 
+('0123YZB','67890123F','Citroën','C3',2020,'Rojo','glp','manual',64000),
+('1234ABC','12345678A','Seat','Ibiza',2018,'Blanco','gasolina','manual',85000),
+('2345RST','45678901D','Peugeot','208',2022,'Blanco','gasolina','manual',21000),
+('2468KLM','89012345H','Audi','A3',2023,'Gris','electrico','automatico',12000),
+('3456JKL','34567890C','Toyota','Corolla',2021,'Negro','hibrido','automatico',38000),
+('4567CDF','78901234G','Fiat','Panda',2012,'Verde','gasolina','manual',175000),
+('5678DEF','12345678A','Renault','Clio',2015,'Rojo','diesel','manual',142000),
+('6789VWX','56789012E','Opel','Corsa',2016,'Plata','gasolina','manual',110000),
+('7890MNP','45678901D','Volkswagen','Golf',2017,'Azul','diesel','manual',120000),
+('8901GHJ','89012345H','BMW','Serie 1',2019,'Negro','diesel','automatico',89000),
+('9012GHI','23456789B','Ford','Focus',2019,'Gris','diesel','manual',96000);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
