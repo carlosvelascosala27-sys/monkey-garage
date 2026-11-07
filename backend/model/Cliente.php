@@ -40,7 +40,7 @@ class Cliente{
     public function insert() {
         $conexion = Conexion::getInstance();
         $pdo = $conexion->getConnection();
-        $sql = "INSERT INTO cliente (dni, ususario_login, nombre, apellidos, telefono) VALUES (:dni, :usuario_login, :nombre, :apellidos, :telefono)";
+        $sql = "INSERT INTO cliente (dni, usuario_login, nombre, apellidos, telefono) VALUES (:dni, :usuario_login, :nombre, :apellidos, :telefono)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':dni', $this->dni, PDO::PARAM_STR);
         $stmt->bindParam(':usuario_login', $this->usuario_login, PDO::PARAM_STR);

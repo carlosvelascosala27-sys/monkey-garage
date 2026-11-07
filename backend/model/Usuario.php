@@ -9,9 +9,9 @@ class Usuario{
     private $auth_key;
     private $auth_expira;
 
-    public function __construct($login, $password, $nombre, $rol){
+    public function __construct($login, $password, $nombre, $rol, $yaCifrada = false){
         $this->login = $login;
-        $this->password = $this->cifrado($password);
+        $this->password = $yaCifrada ? $password : $this->cifrado($password);
         $this->nombre = $nombre;
         $this->rol = $rol;
     }
@@ -101,6 +101,78 @@ class Usuario{
 
         }
 
+
+    }
+
+    public static function buscarPorLogin($login){
+        try{
+            $conexion = Conexion::getInstance();
+            $pdo = $conexion->getConnection();
+            $sql = "SELECT login, password, nombre, rol FROM usuario WHERE login = :login";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+            $stmt->execute();
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($usuario) {
+                return new Usuario($usuario['login'], $usuario['password'], $usuario['nombre'], $usuario['rol'], true);
+            } else {
+                return null;
+            }
+        }catch(Exception $e){
+            throw new Exception($e->getMessage(), 1);
+
+        }
+    }
+
+    public static function buscarPorAuthKey($auth_key){
+        try{
+            $conexion = Conexion::getInstance();
+            $pdo = $conexion->getConnection();
+            $sql = "SELECT login, password, nombre, rol FROM usuario WHERE auth_key = :auth_key AND auth_expira > NOW()";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':auth_key', $auth_key, PDO::PARAM_STR);
+            $stmt->execute();
+            $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($usuario) {
+                return new Usuario($usuario['login'], $usuario['password'], $usuario['nombre'], $usuario['rol'], true);
+            } else {
+                return null;
+            }
+        }catch(Exception $e){
+            throw new Exception($e->getMessage(), 1);
+
+        }
+    }
+
+    public function eliminarAuthKey(){
+        try{
+            $conexion = Conexion::getInstance();
+            $pdo = $conexion->getConnection();
+            $sql = "UPDATE usuario SET auth_key = NULL, auth_expira = NULL WHERE login = :login";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':login', $this->login, PDO::PARAM_STR);
+            return $stmt->execute();
+        }catch(Exception $e){
+            throw new Exception($e->getMessage(), 1);
+
+        }
+    }
+
+    public function generarAuthKey(){
+        $config = require __DIR__ . '/../../config.php';
+        $this->auth_key = bin2hex(random_bytes(32));
+        $this->auth_expira = date('Y-m-d H:i:s', time() + $config['duracion_token'] * 3600);
+
+        $conexion = Conexion::getInstance();
+        $pdo = $conexion->getConnection();
+        $sql = "UPDATE usuario SET auth_key = :auth, auth_expira = :expira WHERE login = :login";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':auth', $this->auth_key, PDO::PARAM_STR);
+        $stmt->bindParam(':expira', $this->auth_expira, PDO::PARAM_STR);
+        $stmt->bindParam(':login', $this->login, PDO::PARAM_STR);
+        $stmt->execute();
+        
+        return $this->auth_key;
 
     }
 
