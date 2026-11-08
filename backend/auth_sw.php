@@ -120,28 +120,8 @@ switch ($accion) {
         
         break;
     case 'logout':
-        $token = $datos['token'] ?? '';
-        if (empty($token)) {
-            http_response_code(400);
-            echo json_encode([
-                "success" => false,
-                "msg" => "Faltan parámetros.",
-                "data" => []
-            ]);
-            exit;
-        }
-
-        $usuario = Usuario::buscarPorAuthKey($token);
-        if ($usuario === null) {
-            http_response_code(401);
-            echo json_encode([
-                "success" => false,
-                "msg" => "Token inválido.",
-                "data" => []
-            ]);
-            exit;
-        }
-
+        $rolesPermitidos = ['cliente', 'mecanico', 'oficina', 'admin'];
+        require_once __DIR__ . '/auth.inc.php';
         $usuario->eliminarAuthKey();
         echo json_encode([
             "success" => true,
