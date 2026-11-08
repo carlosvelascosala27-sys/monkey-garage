@@ -7,7 +7,7 @@ async function llamarApi(accion, datos, token = null) {
 
     // Llamada al servidor: la URL, el método POST, las cabeceras y los datos
     // La acción va dentro del JSON, junto con el login y la contraseña
-    const respuesta = await fetch('../backend/auth_sw.php',{
+    const respuesta = await fetch('/monkey-garage/backend/auth_sw.php',{
         method: 'POST',
         headers: cabeceras,
         body: JSON.stringify({action: accion, ...datos})

@@ -23,18 +23,23 @@
                     <h2>Registro</h2>
                     <p>Crea tu cuenta y entra al garage</p>
                     <form>
-                        <input type="text" placeholder="Nombre">
-                        <input type="text" placeholder="Apellidos">
-                        <input type="tel" placeholder="Teléfono">
-                        <input type="text" placeholder="DNI">
-                        <input type="email" placeholder="Correo electrónico">
-                        <input type="password" placeholder="Contraseña">
-                        <div class="errores"></div>
-                        <button type="button">Registrarse</button>
+                        <input type="text" id="nombre" placeholder="Nombre">
+                        <input type="text" id= "apellidos" placeholder="Apellidos">
+                        <input type="tel" id="telefono" placeholder="Teléfono">
+                        <input type="text" id="dni" placeholder="DNI">
+                        <input type="email" id="email" placeholder="Correo electrónico">
+                        <input type="password" id="password" placeholder="Contraseña">
+                        <input type="password" id="rpassword" placeholder="Repetir contraseña">
+                        <div class="errores" id="errores"></div>
+                        <button type="submit">Registrarse</button>
                     </form>
                     <a href="../">¿Ya tienes cuenta? Inicia sesión</a>
                 </div>
             </div>
         </div>
+        <script src="../assets/js/api.js"></script>
+        <script src="../assets/js/registro.js"></script>
+
+
     </body>
 </html>
