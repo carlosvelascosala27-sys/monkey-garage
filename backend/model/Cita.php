@@ -82,14 +82,20 @@ class Cita{
         $stmt->bindParam(':id_cita', $this->id_cita, PDO::PARAM_INT);
         return $stmt->execute();
     }
-
     public function delete() {
         $conexion = Conexion::getInstance();
         $pdo = $conexion->getConnection();
         $sql = "DELETE FROM cita WHERE id_cita = :id_cita";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':id_cita', $this->id_cita, PDO::PARAM_INT);
-        return $stmt->execute();
+        try {
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            if ($e->getCode() === '23000') {
+                throw new Exception("No se puede borrar una cita que ya tiene factura.", 1);
+            }
+            throw $e;
+        }
     }
 
     public static function getArray() {
@@ -147,7 +153,7 @@ class Cita{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     private function validarMecanico($login) {
         $usuario = Usuario::buscarPorLogin($login);
         if ($usuario === null || $usuario->rol !== 'mecanico') {
