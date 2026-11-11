@@ -160,9 +160,10 @@ class Usuario{
 
     public function generarAuthKey(){
         $config = require __DIR__ . '/../../config.php';
-        $this->auth_key = bin2hex(random_bytes(32));
+        $fecha_inicio = date('Y-m-d H:i:s');
+        $frase = bin2hex(random_bytes(16));
+        $this->auth_key = hash('sha256', $this->login . $fecha_inicio . $frase);
         $this->auth_expira = date('Y-m-d H:i:s', time() + $config['duracion_token'] * 3600);
-
         $conexion = Conexion::getInstance();
         $pdo = $conexion->getConnection();
         $sql = "UPDATE usuario SET auth_key = :auth, auth_expira = :expira WHERE login = :login";
