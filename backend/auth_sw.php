@@ -5,7 +5,6 @@ require_once __DIR__ . '/model/Conexion.php';
 require_once __DIR__ . '/model/Cliente.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
     echo json_encode([
         "success" => false,
         "msg" => "Método no permitido.",
@@ -17,7 +16,6 @@ $datos = json_decode(file_get_contents('php://input'), true);
 $accion = isset($datos['action']) ? $datos['action'] : null;
 
 if ($accion === null) {
-    http_response_code(400);
     echo json_encode([
         "success" => false,
         "msg" => "Acción no especificada.",
@@ -31,7 +29,6 @@ switch ($accion) {
         $login = $datos['login'] ?? '';
         $password = $datos['password'] ?? '';
         if (empty($login) || empty($password)) {
-            http_response_code(400);
             echo json_encode([
                 "success" => false,
                 "msg" => "Faltan parámetros.",
@@ -43,7 +40,6 @@ switch ($accion) {
         $usuario = Usuario::buscarPorLogin($login);
 
         if ($usuario === null || $usuario->verificarPassword($password) === false) {
-                http_response_code(401);
                 echo json_encode([
                     "success" => false,
                     "msg" => "Usuario o contraseña incorrectos.",
@@ -75,7 +71,6 @@ switch ($accion) {
         $password = $datos['password'] ?? '';
 
         if (empty($nombre) || empty($apellidos) || empty($telefono) || empty($dni) || empty($login) || empty($password)) {
-            http_response_code(400);
             echo json_encode([
                 "success" => false,
                 "msg" => "Faltan parámetros.",
@@ -86,7 +81,6 @@ switch ($accion) {
 
         $usuarioExistente = Usuario::buscarPorLogin($login);
         if ($usuarioExistente !== null) {
-            http_response_code(409);
             echo json_encode([
                 "success" => false,
                 "msg" => "El usuario ya existe.",
@@ -109,7 +103,6 @@ switch ($accion) {
             ]);
         } else {
             $pdo->rollBack();
-            http_response_code(500);
             echo json_encode([
                 "success" => false,
                 "msg" => "Error al registrar el usuario.",
@@ -132,7 +125,6 @@ switch ($accion) {
         
         break;
     default:
-        http_response_code(400);
         echo json_encode([
             "success" => false,
             "msg" => "Acción no válida.",

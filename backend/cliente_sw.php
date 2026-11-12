@@ -3,7 +3,6 @@ header('Content-Type: application/json; charset=utf-8');
 require_once __DIR__ . '/model/Usuario.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
     echo json_encode([
         "success" => false,
         "msg" => "Método no permitido.",
@@ -31,7 +30,6 @@ switch ($accion){
         ]);
         break;
     default:
-        http_response_code(400);
         echo json_encode([
             "success" => false,
             "msg" => "Acción no válida.",
