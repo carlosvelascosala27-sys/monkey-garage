@@ -31,7 +31,7 @@ La base de datos `monkey_garage` tiene 7 tablas:
 - **cliente**: datos personales del cliente (DNI como clave primaria).
 - **vehiculo**: coches de los clientes (matrícula como clave primaria). Un cliente puede tener varios vehículos.
 - **cita**: citas y reparaciones de un vehículo, con el mecánico asignado, el estado de la reparación y las horas trabajadas.
-- **factura**: factura de una cita finalizada, con mano de obra, repuestos, IVA y total.
+- **factura**: factura de una cita finalizada, con mano de obra, IVA y total.
 - **repuesto**: catálogo de piezas, con precio y stock.
 - **cita_repuesto**: piezas usadas en cada cita, con cantidad y precio en el momento de la reparación.
 
