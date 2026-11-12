@@ -77,7 +77,6 @@ CREATE TABLE `factura` (
   `id_cita` int(11) NOT NULL,
   `fecha` date NOT NULL,
   `mano_obra` decimal(10,2) NOT NULL,
-  `repuestos` decimal(10,2) NOT NULL,
   `subtotal` decimal(10,2) NOT NULL,
   `iva` decimal(10,2) NOT NULL,
   `total` decimal(10,2) NOT NULL,

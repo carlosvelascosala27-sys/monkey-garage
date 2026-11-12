@@ -52,22 +52,26 @@ insert  into `cita_repuesto`(`id_cita`,`id_repuesto`,`cantidad`,`precio_unitario
 
 insert  into `cliente`(`dni`,`usuario_login`,`nombre`,`apellidos`,`telefono`) values 
 ('12345678A','juan@correo.com','Juan','Martínez Pérez','600111222'),
+('12345678Z','nuevo@correo.com','Ana','Belmonte','600000000'),
+('20521363G','anton.velascosala@gmail.com','Carlos','Velasco','635956150'),
 ('23456789B','maria@correo.com','María','López García','600333444'),
+('33334444X','prueba2@correo.com','Test','Prueba Dos','600000000'),
 ('34567890C',NULL,'Carlos','Navarro Díaz','600555666'),
 ('45678901D','ana@correo.com','Ana','Belmonte Sala','600777888'),
 ('56789012E','david@correo.com','David','Soler Mira','600999000'),
 ('67890123F','elena@correo.com','Elena','Prieto Lorca','611222333'),
 ('78901234G',NULL,'Antonio','Ruiz Hernández','611444555'),
-('89012345H','pablo@correo.com','Pablo','Cano Vidal','611666777');
+('89012345H','pablo@correo.com','Pablo','Cano Vidal','611666777'),
+('99999999Z','prueba@correo.com','Prueba','Usuario','600000000');
 
 /*Data for the table `factura` */
 
-insert  into `factura`(`numero_factura`,`id_cita`,`fecha`,`mano_obra`,`repuestos`,`subtotal`,`iva`,`total`) values 
-(1,1,'2026-10-05',67.50,57.50,125.00,26.25,151.25),
-(2,2,'2026-10-07',90.00,145.00,235.00,49.35,284.35),
-(3,3,'2026-10-09',180.00,185.00,365.00,76.65,441.65),
-(4,4,'2026-10-13',22.50,110.00,132.50,27.83,160.33),
-(5,5,'2026-10-16',45.00,56.00,101.00,21.21,122.21);
+insert  into `factura`(`numero_factura`,`id_cita`,`fecha`,`mano_obra`,`subtotal`,`iva`,`total`) values 
+(1,1,'2026-10-05',67.50,125.00,26.25,151.25),
+(2,2,'2026-10-07',90.00,235.00,49.35,284.35),
+(3,3,'2026-10-09',180.00,365.00,76.65,441.65),
+(4,4,'2026-10-13',22.50,132.50,27.83,160.33),
+(5,5,'2026-10-16',45.00,101.00,21.21,122.21);
 
 /*Data for the table `repuesto` */
 
@@ -88,6 +92,7 @@ insert  into `repuesto`(`id_repuesto`,`referencia`,`nombre`,`precio`,`stock`) va
 insert  into `usuario`(`login`,`password`,`nombre`,`rol`,`auth_key`,`auth_expira`) values 
 ('AD01','provisional','Administrador','admin',NULL,NULL),
 ('ana@correo.com','provisional','Ana Belmonte','cliente',NULL,NULL),
+('anton.velascosala@gmail.com','$2y$10$bd5sg0D3AmY4nZl04yJLuuCjBQffRh1m26a3SsMYzMS4U8pW.fdbK','Carlos','cliente','e660c92d7cf6ec689635c750d8ffc4a407a9cb6d2d72c95551abd2c406565868','2026-11-08 21:53:45'),
 ('david@correo.com','provisional','David Soler','cliente',NULL,NULL),
 ('elena@correo.com','provisional','Elena Prieto','cliente',NULL,NULL),
 ('juan@correo.com','provisional','Juan Martínez','cliente',NULL,NULL),
@@ -96,9 +101,12 @@ insert  into `usuario`(`login`,`password`,`nombre`,`rol`,`auth_key`,`auth_expira
 ('MC02','provisional','Andrés Ruiz','mecanico',NULL,NULL),
 ('MC03','provisional','Lucía Ferrer','mecanico',NULL,NULL),
 ('MC04','provisional','Javier Ortega','mecanico',NULL,NULL),
+('nuevo@correo.com','$2y$10$WXq8v.pvYkkelIYJH5yN2uOdvn1uSMt6WKU7M8fOQRaUTkRCVJqrW','Ana','cliente',NULL,'2020-01-01 00:00:00'),
 ('OF01','provisional','Laura Gómez','oficina',NULL,NULL),
 ('OF02','provisional','Sergio Molina','oficina',NULL,NULL),
-('pablo@correo.com','provisional','Pablo Cano','cliente',NULL,NULL);
+('pablo@correo.com','provisional','Pablo Cano','cliente',NULL,NULL),
+('prueba2@correo.com','$2y$10$fCglPsrQUzhRtJ0l7xpPquuWeUlB7fzKZEzP2SWlbRQxKk2lT8DPG','Test','cliente','6a89c9f3faa864b941c5aae3309ed232702d6b12c293c5de1e67d267228db2aa','2026-11-12 23:51:23'),
+('prueba@correo.com','$2y$10$KHG9lBCJ9x5pXRes/pgC3eZMfWng..GmRi15T00i3RRYeTz4J3KDe','Prueba','cliente','a7bb57c708f843867c5861259fa4e00b53d9a583b19e3b1c8f7a1194e102261f','2020-01-01 00:00:00');
 
 /*Data for the table `vehiculo` */
 
