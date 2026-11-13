@@ -60,8 +60,8 @@ body.panel-cliente {
 .logo img {
     width: 150px;
     height: 60px;
+    object-fit: contain;
 }
-
 .logo span {
     font-family: 'Black Ops One', sans-serif;
     font-size: 20px;
@@ -73,13 +73,14 @@ body.panel-cliente {
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--gris);
-    margin: 24px 0 8px;
+    margin: 24px 0 20px;
 }
 
 .sidebar nav {
     display: flex;
     flex-direction: column;
     gap: 4px;
+    margin-bottom: 24px;
 }
 
 .sidebar nav a {
@@ -166,7 +167,7 @@ body.panel-cliente {
 
 .tarjetas-resumen {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
     margin-bottom: 28px;
 }
@@ -234,7 +235,7 @@ body.panel-cliente {
 
 .piezas li {
     display: grid;
-    grid-template-columns: 110px 1fr auto;
+    grid-template-columns: 110px minmax(0, 1fr) auto;
     gap: 12px;
     align-items: center;
     padding: 12px 0;
@@ -307,7 +308,7 @@ body.panel-cliente {
 
 .datos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
     margin: 16px 0;
 }
@@ -321,7 +322,7 @@ body.panel-cliente {
 
 .lista-vehiculos {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
 }
 
@@ -363,9 +364,10 @@ body.panel-cliente {
 
 .vehiculo .datos {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
 }
+
 
 .vehiculo-pie {
     display: flex;
@@ -422,17 +424,39 @@ body.panel-cliente {
 
 .lista-citas {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
 }
 
 .cita {
     display: flex;
+    align-items: center;
     gap: 16px;
     background: #0a0a0a;
     border: 1px solid #1f1f1f;
     border-radius: 8px;
     padding: 16px;
+}
+
+.info-cita {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.vehiculo-cita {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pie-cita {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 4px;
 }
 
 .cabecera-seccion .acciones {
@@ -474,4 +498,120 @@ body.panel-cliente {
     background: var(--verde);
     border-color: var(--verde);
     color: var(--negro);
+}
+@media (max-width: 1032px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #1f1f1f;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 4px;
+    }
+
+    .sidebar nav a {
+        padding: 8px 10px;
+        font-size: 16px;
+        white-space: nowrap;
+    }
+    .facturas table {
+        width: auto;
+        margin: 0 auto;
+    }
+    .facturas th,
+    .facturas td {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .facturas .col-extra {
+        display: none;
+    }
+    .facturas th:nth-child(2),
+    .facturas td:nth-child(2),
+    .facturas th:nth-child(9),
+    .facturas td:nth-child(9),
+    .facturas th:nth-child(10),
+    .facturas td:nth-child(10) {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 600px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #1f1f1f;
+    }
+
+    .sidebar nav {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 10px
+    }
+
+    .sidebar nav a {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .contenido {
+        padding: 16px;
+        min-width: 0;
+    }
+
+    .cabecera {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .btn-nueva-cita {
+        width: 100%;
+    }
+
+    .cabecera-seccion {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .tarjetas-resumen,
+    .datos,
+    .lista-citas,
+    .lista-vehiculos {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .piezas li {
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .progreso {
+        flex-wrap: wrap;
+    }
+
+    .progreso li {
+        flex: 1 1 45%;
+    }
+
+    
+
+    
+
+    .vehiculo-pie,
+    .paginador {
+        flex-wrap: wrap;
+    }
 }
