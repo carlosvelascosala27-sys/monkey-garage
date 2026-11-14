@@ -55,7 +55,7 @@ switch ($accion){
         ]);
         exit;
         }else{
-            if ($vehiculo['cliente_dni'] != $dni){
+            if ($vehiculo['cliente_dni'] !== $dni){
                 echo json_encode([
                 "success" => false,
                 "msg" => "El vehiculo no existe",
@@ -97,7 +97,7 @@ switch ($accion){
         ]);
         exit;
         }else{
-            if ($vehiculo['cliente_dni'] != $dni){
+            if ($vehiculo['cliente_dni'] !== $dni){
                 echo json_encode([
                 "success" => false,
                 "msg" => "El vehiculo no existe",
