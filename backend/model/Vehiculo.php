@@ -112,4 +112,20 @@ class Vehiculo{
             throw new Exception($e->getMessage(), 1);
         }
     }
+
+    public static function comprobarVehiculo($matricula){
+        try{
+            $conexion = Conexion::getInstance();
+            $pdo = $conexion->getConnection();
+            $sql = "SELECT matricula, cliente_dni, marca, modelo, anio, color, combustible, transmision, kilometros FROM vehiculo WHERE matricula = :matricula";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':matricula', $matricula, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        }catch(Exception $e){
+            throw new Exception($e->getMessage(), 1);
+            
+        }
+    }
 }

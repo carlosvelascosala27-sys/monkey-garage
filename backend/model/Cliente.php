@@ -87,5 +87,21 @@ class Cliente{
         }
     }
 
+    public static function buscarPorLogin($usuario_login){
+        try{
+            $conexion = Conexion::getInstance();
+            $pdo = $conexion->getConnection();
+            $sql = "SELECT dni FROM cliente WHERE usuario_login = :usuario_login";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':usuario_login', $usuario_login, PDO::PARAM_STR);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        }catch(Exception $e){
+            throw new Exception($e->getMessage(), 1);
+            
+        }
+    }
+
 
 }
