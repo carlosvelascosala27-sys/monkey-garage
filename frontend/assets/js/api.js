@@ -1,8 +1,8 @@
-async function llamarApi(accion, datos, token = null) {
+async function llamarApi(accion, datos, token = null, url = '/monkey-garage/backend/auth_sw.php' ) {
     const cabeceras = { 'Content-Type': 'application/json'};
     
 
-    const respuesta = await fetch('/monkey-garage/backend/auth_sw.php',{
+    const respuesta = await fetch(url,{
         method: 'POST',
         headers: cabeceras,
         body: JSON.stringify({action: accion, auth_key: token, ...datos})
@@ -10,8 +10,4 @@ async function llamarApi(accion, datos, token = null) {
 
     return await respuesta.json();
 
-
-
-
-    
 }

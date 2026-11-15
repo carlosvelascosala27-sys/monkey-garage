@@ -499,6 +499,96 @@ body.panel-cliente {
     border-color: var(--verde);
     color: var(--negro);
 }
+
+#mensaje-vehiculos {
+    margin: 0 0 16px 0;
+}
+
+.modal-fondo {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-caja {
+    position: relative;
+    background: #111;
+    border: 1px solid #1f1f1f;
+    border-radius: 8px;
+    padding: 72px 24px 24px 24px;
+    min-width: 320px;
+    max-width: 480px;
+    width: 90%;
+    box-sizing: border-box;
+}
+
+.modal-caja form {
+    display: block;
+}
+
+.modal-caja label {
+    display: block;
+    margin-bottom: 22px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+.modal-caja label input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 6px;
+    padding: 10px 12px;
+    background: #0a0a0a;
+    color: var(--blanco);
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+.modal-caja form button[type="submit"] {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 12px;
+    background: var(--verde);
+    color: var(--negro);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-cerrar {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    width: auto;
+    padding: 4px 10px;
+    background: transparent;
+    color: var(--gris);
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.modal-cerrar:hover {
+    color: #f55;
+    border-color: #f55;
+}
 @media (max-width: 1032px) {
     .layout {
         flex-direction: column;
