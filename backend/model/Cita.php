@@ -18,7 +18,10 @@ class Cita{
         $this->estado = $estado;
         $this->horas_trabajadas = $horas_trabajadas;
         $this->id_cita = $id_cita;
-        $this->validarMecanico($mecanico_login);
+        if($mecanico_login !== null){
+            $this->validarMecanico($mecanico_login);
+
+        }
         $this->mecanico_login = $mecanico_login;
     }
 
@@ -35,7 +38,10 @@ class Cita{
         $set = ['mecanico_login', 'fecha', 'motivo', 'estado', 'horas_trabajadas'];
         if(in_array($property, $set, true)){
             if ($property === 'mecanico_login') {
-                $this->validarMecanico($valor);
+                if ($valor !== null){
+                    $this->validarMecanico($valor);
+
+                }
             }
             $this->$property = $valor;
         } else{
