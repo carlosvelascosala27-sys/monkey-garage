@@ -150,14 +150,31 @@ class Cita{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function getCitasPorCliente($dni) {
+    public static function getCitasPorCliente($dni, $pagina, $tamano_pagina) {
         $conexion = Conexion::getInstance();
         $pdo = $conexion->getConnection();
-        $sql = "SELECT c.* FROM cita c JOIN vehiculo v ON c.vehiculo_matricula = v.matricula WHERE v.cliente_dni = :dni";
+        $sql = "SELECT c.* FROM cita c JOIN vehiculo v ON c.vehiculo_matricula = v.matricula WHERE v.cliente_dni = :dni ORDER BY ABS(DATEDIFF(c.fecha, CURDATE()))  LIMIT :limite OFFSET :desplazamiento";
+        $desplazamiento = ($pagina - 1) * $tamano_pagina;
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':dni', $dni, PDO::PARAM_STR);
+        $stmt->bindParam(':limite', $tamano_pagina, PDO::PARAM_INT);
+        $stmt->bindParam(':desplazamiento', $desplazamiento, PDO::PARAM_INT);
+
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function contarCitasPorCliente($dni){
+        $conexion = Conexion::getInstance();
+        $pdo = $conexion->getConnection();
+        $sql = "SELECT COUNT(*) FROM cita c JOIN vehiculo v ON c.vehiculo_matricula = v.matricula WHERE v.cliente_dni = :dni";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':dni', $dni, PDO::PARAM_STR);
+        
+
+        $stmt->execute();
+        return (int) $stmt->fetchColumn();
+        
     }
 
     private function validarMecanico($login) {
@@ -165,5 +182,15 @@ class Cita{
         if ($usuario === null || $usuario->rol !== 'mecanico') {
             throw new Exception("El usuario $login no es un mecánico", 1);
         }
+    }
+
+    public static function getHorasOcupadas(){
+        $conexion = Conexion::getInstance();
+        $pdo = $conexion->getConnection();
+        $sql = "SELECT fecha FROM cita WHERE estado IN ('pendiente', 'confirmada') AND fecha >= CURDATE()";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+
     }
 }

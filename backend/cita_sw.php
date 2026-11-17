@@ -29,17 +29,39 @@ if ($buscarLogin === false) {
     exit;
 }
 $dni = $buscarLogin['dni'];
+$tamano_pagina = 4;
+
 switch($accion){
 
-case 'listar_citas':
-    $citas = Cita::getCitasPorCliente($dni);
-    echo json_encode([
-        "success" => true,
-        "msg" => "Datos de las citas obtenidos correctamente.",
-        "data" => $citas
+    case 'listar_citas':
+        $pagina = isset($datos['pagina']) ? $datos['pagina'] : 1;
+
+        $citas = Cita::getCitasPorCliente($dni, $pagina, $tamano_pagina);
         
-    ]);
+
+
+        $total = Cita::contarCitasPorCliente($dni);
+        echo json_encode([
+            "success" => true,
+            "msg" => "Datos de las citas obtenidos correctamente.",
+            "data" => $citas,
+            "total"=> $total
+            
+        ]);
     break;
+
+    case 'horas_ocupadas':
+        $horas = Cita::getHorasOcupadas();
+        echo json_encode([
+            "success" => true,
+            "msg" => "Datos de las horas de las citas obtenidos correctamente.",
+            "data" => $horas,
+            
+        ]);
+
+
+    break;
+
 
     case 'pedir_cita':
         $matricula = $datos['matricula'];

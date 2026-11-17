@@ -107,7 +107,16 @@ switch ($accion){
             }
 
             $datos_vehiculo = new Vehiculo ($vehiculo['matricula'], $vehiculo['cliente_dni'], $vehiculo['marca'], $vehiculo['modelo']);
-            $borrar = $datos_vehiculo->delete();
+            try{
+                $borrar = $datos_vehiculo->delete();
+            } catch (PDOException $e) {
+                echo json_encode([
+                    "success" => false,
+                    "msg" => "No se puede borrar este vehículo porque tiene citas asociadas.",
+                    "data" => []
+                ]);
+                exit;
+            }
             if($borrar === true){
                 echo json_encode([
                 "success" => true,

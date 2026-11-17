@@ -122,12 +122,14 @@
 
                 <section class="citas">
                     <header class="cabecera-seccion">
-                        <h2>Próximas citas</h2>
+                        <h2>Citas</h2>
                         <div class="acciones">
                             <a href="#">Ver todas</a>
                             <button type="button" class="btn-añadir">+ Añadir cita</button>
                         </div>
                     </header>
+
+                    <div id="mensaje-citas"></div>
 
                     <div class="lista-citas">
                         <article class="cita">
@@ -310,8 +312,15 @@
                 <div id="contenido-modal"></div>
             </div>
         </div>
+        <div id="modal-cita" class="modal-fondo">
+            <div class="modal-caja">
+                <button type="button" id="cerrar-modal-cita" class="modal-cerrar">X</button>
+                <div id="contenido-cita"></div>
+            </div>
+        </div>
         <script src="../assets/js/api.js"></script>
         <script src="../assets/js/cliente.js"></script>
+        <script src="../assets/js/cliente-citas.js"></script>
 
 
         

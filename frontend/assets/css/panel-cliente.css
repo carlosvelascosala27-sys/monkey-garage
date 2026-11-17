@@ -437,6 +437,12 @@ body.panel-cliente {
     border-radius: 8px;
     padding: 16px;
 }
+.fecha {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 48px;
+}
 
 .info-cita {
     display: flex;
@@ -485,19 +491,37 @@ body.panel-cliente {
     margin-top: 20px;
 }
 
-.paginador a {
+.paginador a,
+.paginador button {
     padding: 8px 14px;
+    background: transparent;
     border: 1px solid #2a2a2a;
     border-radius: 6px;
     color: var(--gris);
     text-decoration: none;
+    font-family: 'Inter', sans-serif;
     font-size: 15px;
+    cursor: pointer;
+    width: auto;
+    flex: 0 0 auto;
 }
 
-.paginador a.activo {
+.paginador a.activo,
+.paginador button.activo {
     background: var(--verde);
     border-color: var(--verde);
     color: var(--negro);
+}
+
+.paginador button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+.paginador button:first-child,
+.paginador button:last-child {
+    color: var(--verde-texto);
+    border-color: var(--verde-texto);
+    font-weight: 600;
 }
 
 #mensaje-vehiculos {
@@ -588,6 +612,175 @@ body.panel-cliente {
 .modal-cerrar:hover {
     color: #f55;
     border-color: #f55;
+}
+
+.select-vehiculo {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    background: #000;
+    color: #fff;
+    font-size: 1.05rem;
+    border: 2px solid #7d8f23;
+    border-radius: 10px;
+    box-shadow: 0 0 0 3px rgba(125, 143, 35, 0.2);
+    outline: none;
+    cursor: pointer;
+}
+
+.select-vehiculo:focus {
+    border-color: #a3b83a;
+    box-shadow: 0 0 0 3px rgba(163, 184, 58, 0.35);
+}
+
+.dias {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 6px;
+}
+
+.popup-dias {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    padding: 20px;
+    background: var(--negro);
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.cabecera-popup {
+    display: grid;
+    grid-template-columns: 36px 1fr 36px 36px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.cabecera-popup p {
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--blanco);
+}
+
+.cabecera-popup button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: var(--verde-texto);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.cabecera-popup button:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.popup-dias .dias {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+
+.popup-dias .dias button {
+    padding: 10px 0;
+    background: transparent;
+    border: 1px solid var(--verde);
+    border-radius: 8px;
+    color: var(--blanco);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.popup-dias .dias button:hover:not(:disabled) {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+.popup-dias .dias button:disabled {
+    opacity: 0.25;
+    border-color: #2a2a2a;
+    cursor: not-allowed;
+}
+
+.popup-horas {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    padding: 20px;
+    background: var(--negro);
+    border: 1px solid #2a2a2a;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.cabecera-horas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.cabecera-horas p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+.cabecera-horas button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    color: var(--verde-texto);
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.horas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.horas button {
+    padding: 10px 0;
+    background: transparent;
+    border: 1px solid var(--verde);
+    border-radius: 8px;
+    color: var(--blanco);
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.horas button:hover:not(:disabled) {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+.horas button:disabled {
+    opacity: 0.25;
+    border-color: #2a2a2a;
+    cursor: not-allowed;
 }
 @media (max-width: 1032px) {
     .layout {
