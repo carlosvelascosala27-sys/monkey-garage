@@ -79,7 +79,7 @@ class Factura{
     public static function getFacturasPorCliente($dni) {
         $conexion = Conexion::getInstance();
         $pdo = $conexion->getConnection();
-        $sql = "SELECT f.* FROM factura f JOIN cita c ON f.id_cita = c.id_cita JOIN vehiculo v ON c.vehiculo_matricula = v.matricula WHERE v.cliente_dni = :dni";
+        $sql = "SELECT f.*, v.* FROM factura f JOIN cita c ON f.id_cita = c.id_cita JOIN vehiculo v ON c.vehiculo_matricula = v.matricula WHERE v.cliente_dni = :dni ORDER BY f.fecha DESC" ;
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':dni', $dni, PDO::PARAM_STR);
         $stmt->execute();

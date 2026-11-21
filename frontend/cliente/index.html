@@ -20,11 +20,11 @@
 
                 <p class="seccion">Área de cliente</p>
                 <nav>
-                    <a href="#" class="activo">Resumen</a>
-                    <a href="#">Mis vehículos</a>
-                    <a href="#">Citas</a>
-                    <a href="#">Reparaciones</a>
-                    <a href="#">Facturas</a>
+                    <a href="#" class="activo" data-seccion="resumen">Resumen</a>
+                    <a href="#" data-seccion="vehiculos">Mis vehículos</a>
+                    <a href="#" data-seccion="citas">Citas</a>
+                    <a href="#" data-seccion="reparaciones">Reparaciones</a>
+                    <a href="#" data-seccion="facturas">Facturas</a>
                 </nav>
 
                 <a href="#" class="usuario">
@@ -41,90 +41,81 @@
                 <header class="cabecera">
                     <div>
                         <p class="ruta">Área de cliente / Resumen</p>
-                        <h1>Buenos días, Ana</h1>
+                        <h1>Buenos días, <span id="nombre-cliente"></span></h1>
                     </div>
                     <button type="button" class="btn-nueva-cita">+ Nueva cita</button>
                 </header>
 
-                <section class="tarjetas-resumen">
+                <section class="tarjetas-resumen" data-seccion="resumen">
                     <article class="tarjeta">
                         <p class="etiqueta">Vehículos</p>
-                        <strong class="valor">2</strong>
+                        <strong class="valor" id="resumen-vehiculos">0</strong>
                         <small>Registrados a tu nombre</small>
                     </article>
                     <article class="tarjeta">
                         <p class="etiqueta">Citas activas</p>
-                        <strong class="valor">2</strong>
-                        <small>1 pendiente de confirmar</small>
+                        <strong class="valor" id="resumen-citas">0</strong>
+                        <small id="resumen-citas-pendientes">0 pendientes de confirmar</small>
                     </article>
                     <article class="tarjeta">
                         <p class="etiqueta">En reparación</p>
-                        <strong class="valor">1</strong>
-                        <small>Renault Clio</small>
+                        <strong class="valor" id="resumen-reparacion">0</strong>
+                        <small id="resumen-reparacion-matricula">Sin reparación</small>
                     </article>
-                    
                 </section>
 
-                <section class="reparacion">
+                <section class="reparacion" data-seccion="reparaciones">
                     <header class="cabecera-seccion">
                         <h2>Reparación en curso</h2>
                         <a href="#">Ver detalle</a>
                     </header>
 
-                    <div class="vehiculo-reparacion">
-                        <span class="matricula">5678 RST</span>
-                        <div>
-                            <strong>Renault Clio</strong>
-                            <small>Cita #14 · 26/10/2026 · 08:30</small>
+                    <p id="rep-vacio" class="motivo" hidden>No tienes reparaciones en curso.</p>
+
+                    <div id="rep-contenido">
+                        <div class="vehiculo-reparacion">
+                            <span id="rep-matricula" class="matricula"></span>
+                            <div>
+                                <strong id="rep-vehiculo"></strong>
+                                <small id="rep-cita"></small>
+                            </div>
+                            <span id="rep-estado" class="estado"></span>
                         </div>
-                        <span class="estado">En reparación</span>
+
+                        <ol id="rep-progreso" class="progreso">
+                            <li data-estado="pendiente">Pendiente</li>
+                            <li data-estado="confirmada">Confirmada</li>
+                            <li data-estado="en_reparacion">En reparación</li>
+                            <li data-estado="finalizada">Finalizada</li>
+                        </ol>
+
+                        <p id="rep-motivo" class="motivo"></p>
+
+                        <div class="datos">
+                            <article>
+                                <p class="etiqueta">Mecánico</p>
+                                <strong id="rep-mecanico"></strong>
+                            </article>
+                            <article>
+                                <p class="etiqueta">Horas trabajadas</p>
+                                <strong id="rep-horas"></strong>
+                            </article>
+                            <article>
+                                <p class="etiqueta">Materiales</p>
+                                <strong id="rep-materiales"></strong>
+                            </article>
+                        </div>
+
+                        <h3>Piezas usadas</h3>
+                        <ul id="rep-piezas" class="piezas"></ul>
                     </div>
-
-                    <ol class="progreso">
-                        <li>Pendiente</li>
-                        <li>Confirmada</li>
-                        <li class="activo">En reparación</li>
-                        <li>Finalizada</li>
-                    </ol>
-
-                    <p class="motivo">Motivo: Ruido al frenar, revisar pastillas delanteras.</p>
-
-                    <div class="datos">
-                        <article>
-                            <p class="etiqueta">Mecánico</p>
-                            <strong>Javier Ruiz</strong>
-                        </article>
-                        <article>
-                            <p class="etiqueta">Horas trabajadas</p>
-                            <strong>1,5 h</strong>
-                        </article>
-                        <article>
-                            <p class="etiqueta">Materiales</p>
-                            <strong>51,90 €</strong>
-                        </article>
-                    </div>
-
-                    <h3>Piezas usadas</h3>
-                    <ul class="piezas">
-                        <li>
-                            <span class="codigo">FR-PD-112</span>
-                            <span>Pastillas de freno delanteras</span>
-                            <span>42,00 €</span>
-                        </li>
-                        <li>
-                            <span class="codigo">LQ-DOT4</span>
-                            <span>Líquido de frenos DOT 4</span>
-                            <span>9,90 €</span>
-                        </li>
-                    </ul>
                 </section>
 
 
-                <section class="citas">
+                <section class="citas" data-seccion="citas">
                     <header class="cabecera-seccion">
                         <h2>Citas</h2>
                         <div class="acciones">
-                            <a href="#">Ver todas</a>
                             <button type="button" class="btn-añadir">+ Añadir cita</button>
                         </div>
                     </header>
@@ -178,7 +169,7 @@
                 </section>
                 
 
-                <section class="vehiculos">
+                <section class="vehiculos" data-seccion="vehiculos">
                     <header class="cabecera-seccion">
                         <h2>Mis vehículos</h2>
                     </header>
@@ -234,7 +225,7 @@
                 </section>
                 
 
-                <section class="facturas">
+                <section class="facturas" data-seccion="facturas">
                 <header class="cabecera-seccion">
                     <h2>Facturas recientes</h2>
                     <a href="#">Ver todas</a>
@@ -257,42 +248,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="col-extra">4</td>
-                                <td>15/10/2026</td>
-                                <td>Seat León</td>
-                                <td class="col-extra">#12</td>
-                                <td class="numero col-extra">90,00 €</td>
-                                <td class="numero col-extra">30,00 €</td>
-                                <td class="numero col-extra">120,00 €</td>
-                                <td class="numero col-extra">25,20 €</td>
-                                <td class="numero total">145,20 €</td>
-                                <td><a href="#">Ver</a></td>
-                            </tr>
-                            <tr>
-                                <td class="col-extra">2</td>
-                                <td>02/09/2026</td>
-                                <td>Renault Clio</td>
-                                <td class="col-extra">#9</td>
-                                <td class="numero col-extra">140,00 €</td>
-                                <td class="numero col-extra">118,36 €</td>
-                                <td class="numero col-extra">258,36 €</td>
-                                <td class="numero col-extra">54,26 €</td>
-                                <td class="numero total">312,62 €</td>
-                                <td><a href="#">Ver</a></td>
-                            </tr>
-                            <tr>
-                                <td class="col-extra">1</td>
-                                <td>18/06/2026</td>
-                                <td>Seat León</td>
-                                <td class="col-extra">#4</td>
-                                <td class="numero col-extra">60,00 €</td>
-                                <td class="numero col-extra">14,00 €</td>
-                                <td class="numero col-extra">74,00 €</td>
-                                <td class="numero col-extra">15,54 €</td>
-                                <td class="numero total">89,54 €</td>
-                                <td><a href="#">Ver</a></td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>

@@ -21,6 +21,9 @@ body.panel-cliente {
     box-sizing: border-box;
     background: #0a0a0a;
     border-right: 1px solid #1f1f1f;
+    height: 100vh;
+    position: sticky;
+    top: 0;
 }
 
 .sidebar .usuario {
@@ -227,6 +230,30 @@ body.panel-cliente {
     margin-bottom: 24px;
 }
 
+/* Espaciado de la sección de reparación */
+.reparacion .motivo {
+    margin: 0;
+}
+
+.reparacion .datos {
+    margin: 20px 0;
+}
+
+.reparacion h3 {
+    margin: 0;
+}
+.reparacion .datos article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    min-height: 90px;
+}
+
+.reparacion .datos article p {
+    margin: 0;
+}
+
 .piezas {
     list-style: none;
     padding: 0;
@@ -234,10 +261,7 @@ body.panel-cliente {
 }
 
 .piezas li {
-    display: grid;
-    grid-template-columns: 110px minmax(0, 1fr) auto;
-    gap: 12px;
-    align-items: center;
+    display: block;
     padding: 12px 0;
     border-bottom: 1px solid #1a1a1a;
     font-size: 17px;
@@ -781,6 +805,10 @@ body.panel-cliente {
     opacity: 0.25;
     border-color: #2a2a2a;
     cursor: not-allowed;
+}
+
+[hidden] {
+    display: none !important;
 }
 @media (max-width: 1032px) {
     .layout {

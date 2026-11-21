@@ -193,4 +193,29 @@ class Cita{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     }
+
+    public static function getUltimaModificacion($dni){
+        $conexion = Conexion::getInstance();
+        $pdo = $conexion->getConnection();
+        $sql = "SELECT c.* FROM cita c JOIN vehiculo v ON c.vehiculo_matricula = v.matricula WHERE v.cliente_dni = :dni  AND c.estado IN ('en_reparacion', 'finalizada') ORDER BY c.fecha DESC LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':dni', $dni, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+    public static function contarPorEstado($dni) {
+    $conexion = Conexion::getInstance()->getConnection();
+    $sql = "SELECT c.estado, COUNT(*) AS total
+            FROM cita c
+            JOIN vehiculo v ON c.vehiculo_matricula = v.matricula
+            WHERE v.cliente_dni = :dni
+            GROUP BY c.estado";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':dni', $dni);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
 }
+}
+
+

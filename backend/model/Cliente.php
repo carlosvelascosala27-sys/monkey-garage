@@ -91,8 +91,9 @@ class Cliente{
         try{
             $conexion = Conexion::getInstance();
             $pdo = $conexion->getConnection();
-            $sql = "SELECT dni FROM cliente WHERE usuario_login = :usuario_login";
+            $sql = "SELECT dni, nombre FROM cliente WHERE usuario_login = :usuario_login";
             $stmt = $pdo->prepare($sql);
+
             $stmt->bindParam(':usuario_login', $usuario_login, PDO::PARAM_STR);
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_ASSOC);

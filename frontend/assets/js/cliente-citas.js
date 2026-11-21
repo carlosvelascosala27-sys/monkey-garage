@@ -102,7 +102,9 @@ function crearTarjetaCita(cita){
     hora.textContent = soloHora.slice(0, 5);
     const estado = document.createElement("span");
     estado.className = "estado " + cita.estado;
-    estado.textContent =  cita.estado.charAt(0).toUpperCase() + cita.estado.slice(1);
+    const textoEstado = cita.estado.replace("_", " ");
+    estado.textContent = textoEstado.charAt(0).toUpperCase() + textoEstado.slice(1);
+
     pie.appendChild(hora);
     pie.appendChild(estado);
     info.appendChild(pie);

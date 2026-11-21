@@ -113,7 +113,50 @@ switch($accion){
         }
         exit;
         break;
+    
+        case 'reparacion_en_curso':
+            $cita_estado = Cita::getUltimaModificacion($dni);
+            if ($cita_estado === false){
+                echo json_encode([
+                    "success" => true,
+                    "msg" => "No hay reparaciones",
+                    "data" => []
+                ]);
 
+            }else{
+                $cita = new Cita($cita_estado['vehiculo_matricula'], $cita_estado['mecanico_login'], $cita_estado['fecha'], $cita_estado['motivo'], $cita_estado['estado'], $cita_estado['horas_trabajadas'], $cita_estado['id_cita']);
+                $piezas = $cita->listarPiezas();
+
+                $total = 0;
+
+                foreach($piezas as $pieza){
+                    $total += $pieza['cantidad'] * $pieza['precio_unitario'];
+                }
+                echo json_encode([
+                    "success" => true,
+                    "msg" => "Reparación obtenida correctamente.",
+                    "data" => [
+                        "matricula" => $cita_estado['vehiculo_matricula'],
+                        "motivo" => $cita_estado['motivo'],
+                        "estado" => $cita_estado['estado'],
+                        "fecha" => $cita_estado['fecha'],
+                        "horas_trabajadas" => $cita_estado['horas_trabajadas'],
+                        "mecanico_login" => $cita_estado['mecanico_login'],
+                        "piezas" => $piezas,
+                        "total_materiales" => $total
+                    ]
+                ]);
+
+            }
+            break;
+            case 'resumen_citas':
+                $conteos = Cita::contarPorEstado($dni);
+                echo json_encode([
+                    "success" => true,
+                    "msg" => "Resumen de citas obtenido.",
+                    "data" => $conteos
+                ]);
+                break;
 
     default:
     echo json_encode([
