@@ -205,17 +205,60 @@ class Cita{
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     public static function contarPorEstado($dni) {
-    $conexion = Conexion::getInstance()->getConnection();
-    $sql = "SELECT c.estado, COUNT(*) AS total
-            FROM cita c
-            JOIN vehiculo v ON c.vehiculo_matricula = v.matricula
-            WHERE v.cliente_dni = :dni
-            GROUP BY c.estado";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':dni', $dni);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
-}
+        $conexion = Conexion::getInstance()->getConnection();
+        $sql = "SELECT c.estado, COUNT(*) AS total
+                FROM cita c
+                JOIN vehiculo v ON c.vehiculo_matricula = v.matricula
+                WHERE v.cliente_dni = :dni
+                GROUP BY c.estado";
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(':dni', $dni);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_KEY_PAIR);
+    }
+
+    public static function getCitasPorMecanico($login){
+        $conexion = Conexion::getInstance();
+        $pdo = $conexion->getConnection();
+        $sql = "SELECT * FROM cita WHERE mecanico_login = :login ORDER BY fecha DESC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':login', $login, PDO::PARAM_STR);
+
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    /**
+     * Busca una cita por su id.
+     * Devuelve un objeto Cita si existe, o null si no hay ninguna con ese id.
+     * Se usa en mecanico_sw.php para cambiar el estado, imputar horas y añadir piezas.
+     */
+    public static function buscarPorId($id_cita){
+        $conexion = Conexion::getInstance();
+        $pdo = $conexion->getConnection();
+        $sql = "SELECT * FROM cita WHERE id_cita = :id_cita";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id_cita', $id_cita, PDO::PARAM_INT);
+        $stmt->execute();
+        $fila = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($fila === false) {
+            return null;
+        }
+
+        // Convertimos la fila en un objeto para poder usar update() y añadirPieza()
+
+        return new Cita(
+            $fila['vehiculo_matricula'],
+            $fila['mecanico_login'],
+            $fila['fecha'],
+            $fila['motivo'],
+            $fila['estado'],
+            $fila['horas_trabajadas'],
+            $fila['id_cita']
+        );
+    }
 }
 
 

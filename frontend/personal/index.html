@@ -25,7 +25,7 @@
                     <h2>Acceso del personal</h2>
                     <p class="quien">Oficina, mecánicos y administración</p>
 
-                    <form>
+                    <form id="form-login">
                         <div>
                             <label for="codigo">Código de empleado</label>
                             <input type="text" id="codigo" class="codigo" placeholder="OF01" autocomplete="username">
@@ -46,8 +46,6 @@
         </div>
 
         <script src="../assets/js/api.js"></script>
-        <!-- Cuando exista, el JS de este login irá aquí: según el rol que devuelva el backend,
-             mandará a ../oficina/, ../mecanico/ o ../admin/ -->
-        <!-- <script src="../assets/js/login-personal.js"></script> -->
+        <script src="../assets/js/login-personal.js"></script>
     </body>
 </html>

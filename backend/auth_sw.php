@@ -28,6 +28,7 @@ switch ($accion) {
     case 'login':
         $login = $datos['login'] ?? '';
         $password = $datos['password'] ?? '';
+        $panel = $datos['panel'] ?? 'cliente';
         if (empty($login) || empty($password)) {
             echo json_encode([
                 "success" => false,
@@ -47,6 +48,17 @@ switch ($accion) {
                 ]);
                 exit;
         }
+
+        if ($panel === 'empresa' && !in_array($usuario->rol, ['mecanico', 'oficina', 'admin'])){
+            echo json_encode([
+                "success" => false,
+                "msg" => "Usuario no autorizado",
+                "data" => []
+            ]);
+            exit;
+        }
+
+
 
         $token = $usuario->generarAuthKey();
         echo json_encode([

@@ -81,10 +81,6 @@
                                     <strong id="hoja-vehiculo"></strong>
                                     <span class="secundario" id="hoja-detalle-vehiculo"></span>
                                 </div>
-                                <div class="cliente">
-                                    <strong id="hoja-cliente"></strong>
-                                    <span class="secundario" id="hoja-entrada"></span>
-                                </div>
                             </div>
 
                             <ol class="progreso" id="hoja-progreso">
@@ -98,14 +94,9 @@
                                 <div>
                                     <p class="etiqueta-campo">Horas trabajadas</p>
                                     <div class="horas-control">
-                                        <button type="button" id="btn-restar-horas" aria-label="Restar media hora">−</button>
                                         <output id="horas-trabajadas">0 h</output>
                                         <button type="button" id="btn-sumar-horas" aria-label="Sumar media hora">+</button>
                                     </div>
-                                </div>
-                                <div>
-                                    <label class="etiqueta-campo" for="hoja-km">Kilómetros del vehículo</label>
-                                    <input id="hoja-km" type="number" min="0">
                                 </div>
                             </div>
 
@@ -115,19 +106,15 @@
                                     <thead>
                                         <tr>
                                             <th>Pieza</th>
-                                            <th class="col-extra">Referencia</th>
                                             <th class="numero">Cantidad</th>
                                             <th class="numero">Importe</th>
-                                            <th></th>
                                         </tr>
                                     </thead>
                                     <!-- Ejemplo de cada fila:
                                     <tr>
                                         <td>Escobillas limpiaparabrisas</td>
-                                        <td class="secundario col-extra">ESC-LIMP</td>
                                         <td class="numero">1</td>
                                         <td class="numero">22,00 €</td>
-                                        <td class="numero"><button type="button" class="btn-texto">Quitar</button></td>
                                     </tr>
                                     -->
                                     <tbody id="hoja-piezas"></tbody>
@@ -151,7 +138,6 @@
                             <div class="pie-hoja">
                                 <p>Materiales: <strong class="total" id="hoja-materiales">0,00 €</strong></p>
                                 <div class="acciones">
-                                    <button type="button" class="btn-texto" id="btn-guardar-hoja">Guardar sin terminar</button>
                                     <button type="button" class="btn btn-principal" id="btn-finalizar">Marcar como finalizada</button>
                                 </div>
                             </div>
@@ -174,29 +160,12 @@
                             -->
                             <ul class="lista" id="lista-trabajos"></ul>
                         </section>
-
-                        <section class="bloque" data-seccion="hoja">
-                            <header class="cabecera-seccion">
-                                <h2>Consultar stock</h2>
-                            </header>
-
-                            <label class="etiqueta-campo" for="buscar-repuesto">Buscar pieza o referencia</label>
-                            <input id="buscar-repuesto" type="search" placeholder="Ej. KIT-EMB">
-
-                            <!-- Ejemplo de cada li (stock-bajo si quedan menos de 10):
-                            <li>
-                                <div><strong>Kit de embrague</strong><span class="secundario">KIT-EMB</span></div>
-                                <span class="stock-bajo">3 uds</span>
-                            </li>
-                            -->
-                            <ul class="lista" id="lista-stock"></ul>
-                        </section>
                     </div>
                 </div>
             </main>
         </div>
 
         <script src="../assets/js/api.js"></script>
-        <!-- <script src="../assets/js/mecanico.js"></script> -->
+        <script src="../assets/js/mecanico.js"></script>
     </body>
 </html>
