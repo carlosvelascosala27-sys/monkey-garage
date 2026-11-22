@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Panel de oficina de Monkey Garage: citas, clientes, vehículos y facturas.">
+        <title>Monkey Garage - Panel de oficina</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/comun.css">
+        <link rel="stylesheet" href="../assets/css/panel-personal.css">
+    </head>
+    <body class="panel-personal">
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="logo">
+                    <img src="../assets/img/logo.png" alt="Logo Monkey Garage">
+                    <span>Monkey Garage</span>
+                </div>
+
+                <p class="seccion">Oficina</p>
+                <nav>
+                    <a href="#" class="activo" data-seccion="resumen">Resumen</a>
+                    <a href="#" data-seccion="citas">Citas <span class="contador" id="contador-citas">0</span></a>
+                    <a href="#" data-seccion="clientes">Clientes</a>
+                    <a href="#" data-seccion="vehiculos">Vehículos</a>
+                    <a href="#" data-seccion="facturas">Facturas</a>
+                </nav>
+
+                <div class="usuario">
+                    <span class="avatar" id="usuario-avatar"></span>
+                    <div>
+                        <strong id="usuario-nombre"></strong>
+                        <small id="usuario-login"></small>
+                    </div>
+                </div>
+                <button type="button" class="cerrar-sesion">Cerrar sesión</button>
+            </aside>
+
+            <main class="contenido">
+                <header class="cabecera">
+                    <div>
+                        <p class="ruta">Oficina / Resumen</p>
+                        <h1>Buenos días, <span id="nombre-usuario"></span></h1>
+                    </div>
+                    <div class="acciones">
+                        <button type="button" class="btn btn-secundario" id="btn-nuevo-cliente">+ Nuevo cliente</button>
+                        <button type="button" class="btn btn-principal" id="btn-nueva-cita">+ Nueva cita</button>
+                    </div>
+                </header>
+
+                <section class="tarjetas-resumen" data-seccion="resumen">
+                    <article class="tarjeta urgente">
+                        <p class="etiqueta">Por confirmar</p>
+                        <strong class="valor" id="resumen-por-confirmar">0</strong>
+                        <small>Citas esperando mecánico</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Confirmadas</p>
+                        <strong class="valor" id="resumen-confirmadas">0</strong>
+                        <small id="resumen-proxima">Sin citas próximas</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">En el taller</p>
+                        <strong class="valor" id="resumen-taller">0</strong>
+                        <small>Vehículos en reparación</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Facturado este mes</p>
+                        <strong class="valor" id="resumen-facturado">0,00 €</strong>
+                        <small id="resumen-facturas-mes">0 facturas emitidas</small>
+                    </article>
+                </section>
+
+                <section class="bloque destacado" data-seccion="citas">
+                    <header class="cabecera-seccion">
+                        <h2>Citas por confirmar</h2>
+                        <a href="#">Ver todas las citas</a>
+                    </header>
+
+                    <p id="mensaje-pendientes" class="mensaje"></p>
+
+                    <!-- El JS pinta aquí una cita-pendiente por cada cita. Ejemplo:
+                    <article class="cita-pendiente">
+                        <div><strong>02/11</strong><span class="secundario">16:00</span></div>
+                        <div class="con-matricula">
+                            <span class="matricula">5678DEF</span>
+                            <div><strong>Renault Clio</strong><span class="secundario">Juan Martínez</span></div>
+                        </div>
+                        <p>Ruido en la suspensión</p>
+                        <select class="selector-mecanico" aria-label="Mecánico">
+                            <option value="">Elegir mecánico…</option>
+                            <option value="MC01">Pedro Sánchez</option>
+                        </select>
+                        <div class="acciones">
+                            <button type="button" class="btn btn-principal btn-pequeno">Confirmar</button>
+                            <button type="button" class="btn-texto">Cancelar</button>
+                        </div>
+                    </article>
+                    -->
+                    <div id="lista-pendientes"></div>
+                </section>
+
+                <div class="columnas">
+                    <section class="bloque" data-seccion="citas">
+                        <header class="cabecera-seccion">
+                            <h2>En el taller ahora</h2>
+                        </header>
+
+                        <p id="mensaje-taller" class="mensaje"></p>
+
+                        <!-- Ejemplo de cada li:
+                        <li>
+                            <div class="con-matricula">
+                                <span class="matricula">8901GHJ</span>
+                                <div><strong>BMW Serie 1, cambio de embrague</strong><span class="secundario">Lucía Ferrer, 3,5 h trabajadas</span></div>
+                            </div>
+                            <div class="pasos" role="img" aria-label="Paso 3 de 4: en reparación">
+                                <span class="hecho"></span><span class="hecho"></span><span class="hecho"></span><span></span>
+                            </div>
+                        </li>
+                        -->
+                        <ul class="lista" id="lista-taller"></ul>
+                    </section>
+
+                    <section class="bloque" data-seccion="clientes">
+                        <header class="cabecera-seccion">
+                            <h2>Clientes</h2>
+                            <a href="#">Ver todos</a>
+                        </header>
+
+                        <label class="etiqueta-campo" for="buscar-cliente">Buscar por nombre, DNI o matrícula</label>
+                        <input id="buscar-cliente" type="search" placeholder="Ej. 12345678A">
+
+                        <!-- Ejemplo de cada li:
+                        <li>
+                            <div><strong>Juan Martínez Pérez</strong><span class="secundario">12345678A, 600 111 222</span></div>
+                            <span class="secundario">2 coches</span>
+                        </li>
+                        -->
+                        <ul class="lista" id="lista-clientes"></ul>
+                    </section>
+                </div>
+
+                <section class="bloque" data-seccion="vehiculos">
+                    <header class="cabecera-seccion">
+                        <h2>Vehículos</h2>
+                        <input id="buscar-vehiculo" class="buscador" type="search" placeholder="Buscar matrícula o modelo" aria-label="Buscar vehículo">
+                    </header>
+
+                    <p id="mensaje-vehiculos" class="mensaje"></p>
+
+                    <div class="tabla-contenedor">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Matrícula</th>
+                                    <th>Vehículo</th>
+                                    <th>Cliente</th>
+                                    <th class="col-extra">Combustible</th>
+                                    <th class="numero col-extra">Kilómetros</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-vehiculos"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="bloque" data-seccion="facturas">
+                    <header class="cabecera-seccion">
+                        <h2>Facturas</h2>
+                        <a href="#">Ver todas</a>
+                    </header>
+
+                    <p id="aviso-por-facturar" class="vacio">Nada pendiente de facturar</p>
+
+                    <!-- Ejemplo de cada li:
+                    <li>
+                        <div><strong>Nº 5, Citroën C3</strong><span class="secundario">16/10/2026</span></div>
+                        <span class="total">122,21 €</span>
+                    </li>
+                    -->
+                    <ul class="lista" id="lista-facturas"></ul>
+                </section>
+            </main>
+        </div>
+
+        <div id="modal-oficina" class="modal-fondo">
+            <div class="modal-caja">
+                <button type="button" id="cerrar-modal-oficina" class="modal-cerrar" aria-label="Cerrar">X</button>
+                <div id="contenido-modal-oficina"></div>
+            </div>
+        </div>
+
+        <script src="../assets/js/api.js"></script>
+        <!-- <script src="../assets/js/oficina.js"></script> -->
+    </body>
+</html>

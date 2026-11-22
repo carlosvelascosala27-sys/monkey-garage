@@ -817,13 +817,15 @@ body.panel-cliente {
 
     .sidebar {
         width: 100%;
+        height: auto;
+        position: static;
         border-right: none;
         border-bottom: 1px solid #1f1f1f;
     }
 
     .sidebar nav {
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 4px;
     }
 

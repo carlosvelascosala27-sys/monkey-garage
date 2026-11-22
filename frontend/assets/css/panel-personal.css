@@ -1,0 +1,1087 @@
+/* Paneles del personal: oficina, mecánico y admin.
+   Usa las variables de comun.css y añade solo las que hacen falta. */
+
+:root {
+    --fondo: #0a0a0a;
+    --superficie: #111111;
+    --superficie-2: #1a1a1a;
+    --borde: #1f1f1f;
+    --borde-fuerte: #2a2a2a;
+    --verde-vivo: #a8cc3a;
+    --ambar: #d9a43a;
+    --ambar-fondo: #2a2210;
+    --azul: #6fa3d9;
+    --azul-fondo: #101e2a;
+    --verde-fondo: #1a2a10;
+    --peligro: #ff6b6b;
+    --peligro-fondo: #2a1212;
+    --placa: #f2f2ec;
+    --placa-ue: #1f4fa8;
+    --fuente-titulos: 'Black Ops One', sans-serif;
+    --fuente-texto: 'Inter', system-ui, sans-serif;
+}
+
+html,
+body {
+    overflow-x: clip;
+}
+
+body.panel-personal {
+    margin: 0;
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: var(--fuente-texto);
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.panel-personal * {
+    box-sizing: border-box;
+}
+
+.panel-personal h1,
+.panel-personal h2,
+.panel-personal h3,
+.panel-personal p {
+    margin: 0;
+}
+
+/* Anula los estilos generales de comun.css para botones y campos */
+.panel-personal button {
+    width: auto;
+    margin: 0;
+    font-family: var(--fuente-texto);
+    font-size: 15px;
+}
+
+.panel-personal input,
+.panel-personal select {
+    width: 100%;
+    margin: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    background: var(--fondo);
+    color: var(--blanco);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 6px;
+    font-family: var(--fuente-texto);
+    font-size: 15px;
+}
+
+.panel-personal a:focus-visible,
+.panel-personal button:focus-visible,
+.panel-personal input:focus-visible,
+.panel-personal select:focus-visible {
+    outline: 2px solid var(--verde-vivo);
+    outline-offset: 2px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* ---------- Estructura ---------- */
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    background: var(--fondo);
+    border-right: 1px solid var(--borde);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.logo span {
+    font-family: var(--fuente-titulos);
+    font-size: 20px;
+}
+
+.seccion {
+    font-size: 14px;
+    color: var(--gris);
+    margin: 28px 0 12px !important;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sidebar nav a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    color: var(--gris);
+    text-decoration: none;
+}
+
+.sidebar nav a:hover {
+    color: var(--blanco);
+    background: var(--superficie-2);
+}
+
+.sidebar nav a.activo {
+    color: var(--verde-vivo);
+    background: var(--superficie-2);
+}
+
+.contador {
+    font-size: 13px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--ambar-fondo);
+    color: var(--ambar);
+}
+
+.usuario {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--verde);
+    color: var(--negro);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usuario strong,
+.usuario small {
+    display: block;
+}
+
+.usuario small {
+    font-size: 13px;
+    color: var(--gris);
+}
+
+.cerrar-sesion {
+    margin-top: 12px !important;
+    width: 100% !important;
+    min-height: 44px;
+    background: transparent;
+    color: var(--gris);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.cerrar-sesion:hover {
+    color: var(--peligro);
+    border-color: var(--peligro);
+}
+
+.contenido {
+    flex: 1;
+    min-width: 0;
+    padding: 32px;
+}
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.ruta {
+    font-size: 15px;
+    color: var(--gris);
+    margin-bottom: 6px !important;
+}
+
+.panel-personal h1,
+.panel-personal h2,
+.valor,
+.horas-control output {
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+}
+
+.cabecera h1 {
+    font-size: 34px;
+    text-wrap: balance;
+}
+
+/* ---------- Botones ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    font-weight: 600;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.btn-principal {
+    background: var(--verde);
+    color: var(--negro);
+}
+
+.btn-principal:hover {
+    background: var(--verde-vivo);
+}
+
+.btn-secundario {
+    background: transparent;
+    color: var(--verde-vivo);
+    border-color: var(--borde-fuerte);
+}
+
+.btn-secundario:hover {
+    border-color: var(--verde-vivo);
+}
+
+.btn-pequeno {
+    min-height: 36px;
+    padding: 6px 12px;
+    font-size: 14px !important;
+}
+
+.btn-texto {
+    background: none;
+    border: 0;
+    padding: 6px 4px;
+    color: var(--gris);
+    font-size: 14px !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn-texto:hover {
+    color: var(--peligro);
+}
+
+.btn:disabled {
+    background: var(--superficie-2);
+    color: var(--gris);
+    border-color: var(--borde);
+    cursor: not-allowed;
+}
+
+/* ---------- Tarjetas resumen ---------- */
+.tarjetas-resumen {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.tarjetas-resumen.tres {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tarjeta {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.etiqueta {
+    font-size: 14px;
+    color: var(--gris);
+    margin-bottom: 8px !important;
+}
+
+.valor {
+    display: block;
+    font-size: 34px;
+    color: var(--verde-vivo);
+    margin-bottom: 4px;
+    overflow-wrap: break-word;
+}
+
+.tarjeta small {
+    font-size: 14px;
+    color: var(--gris);
+}
+
+.tarjeta.urgente {
+    background: var(--verde);
+    border-color: var(--verde);
+}
+
+.tarjeta.urgente .etiqueta,
+.tarjeta.urgente .valor,
+.tarjeta.urgente small {
+    color: var(--negro);
+}
+
+/* ---------- Bloques ---------- */
+.bloque {
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.bloque.destacado {
+    border-color: var(--verde);
+}
+
+.cabecera-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.cabecera-seccion h2 {
+    font-size: 22px;
+}
+
+.cabecera-seccion a {
+    color: var(--verde-vivo);
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.columnas {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+}
+
+.columnas.iguales {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mensaje:empty {
+    display: none;
+}
+
+.mensaje {
+    margin-bottom: 12px;
+    color: var(--gris);
+}
+
+/* ---------- Tablas ---------- */
+.tabla-contenedor {
+    overflow-x: auto;
+}
+
+.panel-personal table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.panel-personal th {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--gris);
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--borde);
+    white-space: nowrap;
+}
+
+.panel-personal td {
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--superficie-2);
+    vertical-align: middle;
+}
+
+.numero {
+    text-align: right !important;
+    white-space: nowrap;
+}
+
+.total {
+    font-weight: 600;
+    color: var(--verde-vivo);
+}
+
+/* ---------- Piezas pequeñas ---------- */
+.matricula {
+    position: relative;
+    display: inline-block;
+    padding: 2px 8px 2px 18px;
+    background: var(--placa);
+    color: var(--negro);
+    border: 1px solid var(--negro);
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.matricula::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    background: var(--placa-ue);
+    border-radius: 3px 0 0 3px;
+}
+
+.matricula.grande {
+    font-size: 18px;
+}
+
+.matricula:empty,
+.estado:empty {
+    display: none;
+}
+
+.estado {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.estado.pendiente { background: var(--ambar-fondo); color: var(--ambar); }
+.estado.confirmada { background: var(--azul-fondo); color: var(--azul); }
+.estado.en_reparacion { background: var(--verde-fondo); color: var(--verde-vivo); }
+.estado.finalizada { background: var(--superficie-2); color: var(--gris); }
+.estado.cancelada { background: var(--peligro-fondo); color: var(--peligro); }
+
+.rol {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+    background: var(--superficie-2);
+}
+
+.secundario {
+    display: block;
+    color: var(--gris);
+    font-size: 14px;
+}
+
+.stock-bajo {
+    color: var(--ambar);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.vacio {
+    padding: 16px;
+    border: 1px dashed var(--borde-fuerte);
+    border-radius: 8px;
+    color: var(--gris);
+    text-align: center;
+}
+
+.etiqueta-campo {
+    display: block;
+    font-size: 14px;
+    color: var(--gris);
+    margin-bottom: 6px;
+}
+
+/* ---------- Listas ---------- */
+.lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lista li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--superficie-2);
+}
+
+.lista li:last-child {
+    border-bottom: 0;
+}
+
+.lista strong {
+    display: block;
+    font-weight: 600;
+}
+
+.con-matricula {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-width: 0;
+}
+
+/* Cita pendiente de confirmar (oficina): fila en ordenador, tarjeta en móvil */
+.cita-pendiente {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1.3fr) minmax(0, 1fr) 180px auto;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--superficie-2);
+}
+
+.cita-pendiente:last-child {
+    border-bottom: 0;
+}
+
+.cita-pendiente .acciones {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ---------- Filtros y paginador ---------- */
+.filtros,
+.paginador {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.paginador {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.filtros a,
+.paginador a,
+.paginador button {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--borde-fuerte);
+    background: transparent;
+    color: var(--gris);
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filtros a.activo,
+.paginador a.activo,
+.paginador button.activo {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: var(--negro);
+    font-weight: 600;
+}
+
+.paginador button:disabled {
+    color: var(--borde-fuerte);
+    border-color: var(--borde);
+    cursor: not-allowed;
+}
+
+/* ---------- Progreso ---------- */
+.progreso {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+}
+
+.progreso li {
+    flex: 1;
+    padding-top: 8px;
+    border-top: 3px solid var(--borde-fuerte);
+    font-size: 14px;
+    color: var(--gris);
+}
+
+.progreso li.activo {
+    border-top-color: var(--verde-vivo);
+    color: var(--verde-vivo);
+}
+
+.pasos {
+    display: flex;
+    gap: 3px;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.pasos span {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--borde-fuerte);
+}
+
+.pasos span.hecho {
+    background: var(--verde-vivo);
+}
+
+/* ---------- Hoja de trabajo (mecánico) ---------- */
+.ficha-vehiculo {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 16px;
+    background: var(--fondo);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+}
+
+.ficha-vehiculo .cliente {
+    margin-left: auto;
+    text-align: right;
+}
+
+.dos-campos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.horas-control {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.horas-control button {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    border: 1px solid var(--borde-fuerte);
+    background: var(--fondo);
+    color: var(--verde-vivo);
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.horas-control output {
+    min-width: 96px;
+    text-align: center;
+    font-size: 34px;
+    color: var(--verde-vivo);
+}
+
+.panel-personal h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.anadir-pieza {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px auto;
+    align-items: end;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.pie-hoja {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--borde);
+}
+
+.pie-hoja .acciones {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ---------- Métricas (admin) ---------- */
+.barra-estados {
+    display: flex;
+    gap: 3px;
+    height: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.barra-estados span { flex: 0; }
+.barra-estados [data-estado="pendiente"] { background: var(--ambar); }
+.barra-estados [data-estado="confirmada"] { background: var(--azul); }
+.barra-estados [data-estado="en_reparacion"] { background: var(--verde-vivo); }
+.barra-estados [data-estado="finalizada"] { background: var(--gris); }
+.barra-estados [data-estado="cancelada"] { background: var(--peligro); }
+
+.leyenda {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.leyenda li {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 14px;
+    color: var(--gris);
+}
+
+.leyenda strong {
+    font-size: 22px;
+    color: var(--blanco);
+}
+
+.muestra {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 6px;
+    vertical-align: -1px;
+}
+
+.muestra.pendiente { background: var(--ambar); }
+.muestra.confirmada { background: var(--azul); }
+.muestra.en_reparacion { background: var(--verde-vivo); }
+.muestra.finalizada { background: var(--gris); }
+.muestra.cancelada { background: var(--peligro); }
+
+.metrica {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr) 64px;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.pista {
+    height: 10px;
+    border-radius: 5px;
+    background: var(--superficie-2);
+    overflow: hidden;
+}
+
+.relleno {
+    height: 100%;
+    border-radius: 5px;
+    background: var(--verde-vivo);
+}
+
+.buscador {
+    width: 260px !important;
+    min-height: 40px !important;
+}
+
+/* ---------- Modal ---------- */
+.modal-fondo {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-caja {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    padding: 56px 24px 24px;
+    background: var(--superficie);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+}
+
+.modal-cerrar {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 4px 10px;
+    background: transparent;
+    color: var(--gris);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* ---------- Tablet (menos de 1032 px) ---------- */
+@media (max-width: 1032px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 24px;
+        border-right: 0;
+        border-bottom: 1px solid var(--borde);
+    }
+
+    .logo img {
+        width: 44px;
+        height: 44px;
+    }
+
+    .sidebar .seccion {
+        display: none;
+    }
+
+    .sidebar nav {
+        order: 3;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sidebar nav a {
+        min-height: 40px;
+        padding: 8px 12px;
+    }
+
+    .usuario {
+        margin: 0 0 0 auto;
+        border: 0;
+        padding: 0;
+    }
+
+    .cerrar-sesion {
+        margin-top: 0 !important;
+        width: auto !important;
+        min-height: 40px;
+        padding: 0 14px;
+    }
+
+    .contenido {
+        padding: 24px;
+    }
+
+    .tarjetas-resumen {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .columnas,
+    .columnas.iguales {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0;
+    }
+
+    .cita-pendiente {
+        grid-template-columns: 70px minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .cita-pendiente .selector-mecanico,
+    .cita-pendiente .acciones {
+        grid-column: 2 / -1;
+    }
+
+    .col-extra {
+        display: none;
+    }
+}
+
+/* ---------- Móvil (menos de 600 px) ---------- */
+@media (max-width: 600px) {
+    .sidebar {
+        padding: 12px 16px;
+    }
+
+    .logo span {
+        display: none;
+    }
+
+    .usuario div {
+        display: none;
+    }
+
+    .contenido {
+        padding: 16px;
+    }
+
+    .cabecera {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .cabecera h1 {
+        font-size: 26px;
+    }
+
+    .cabecera .btn {
+        width: 100%;
+    }
+
+    .tarjetas-resumen,
+    .tarjetas-resumen.tres {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .tarjetas-resumen.tres .tarjeta:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .tarjeta {
+        padding: 16px;
+    }
+
+    .panel-personal table {
+        font-size: 14px;
+    }
+
+    .panel-personal th,
+    .panel-personal td {
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .valor {
+        font-size: 26px;
+    }
+
+    .bloque {
+        padding: 16px;
+    }
+
+    .cita-pendiente {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 8px;
+        padding: 16px;
+        margin-bottom: 12px;
+        background: var(--fondo);
+        border: 1px solid var(--borde);
+        border-radius: 8px;
+    }
+
+    .cita-pendiente:last-child {
+        border-bottom: 1px solid var(--borde);
+    }
+
+    .cita-pendiente .selector-mecanico,
+    .cita-pendiente .acciones {
+        grid-column: auto;
+    }
+
+    .cita-pendiente .btn-principal {
+        flex: 1;
+    }
+
+    .con-matricula {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .ficha-vehiculo .cliente {
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .dos-campos,
+    .anadir-pieza {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .horas-control {
+        justify-content: space-between;
+    }
+
+    .horas-control button {
+        width: 72px;
+        height: 64px;
+    }
+
+    .pie-hoja .acciones {
+        width: 100%;
+        flex-direction: column-reverse;
+    }
+
+    .pie-hoja .btn-principal {
+        width: 100%;
+        min-height: 56px;
+    }
+
+    .progreso {
+        flex-wrap: wrap;
+    }
+
+    .progreso li {
+        flex: 1 1 40%;
+    }
+
+    .leyenda {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .metrica {
+        grid-template-columns: 110px minmax(0, 1fr) 52px;
+    }
+
+    .buscador {
+        width: 100% !important;
+    }
+}

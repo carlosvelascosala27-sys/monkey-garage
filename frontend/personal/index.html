@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Acceso del personal de Monkey Garage: oficina, mecánicos y administración.">
+        <title>Monkey Garage - Acceso del personal</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/comun.css">
+        <link rel="stylesheet" href="../assets/css/panel-personal.css">
+        <link rel="stylesheet" href="../assets/css/login-personal.css">
+    </head>
+    <body class="login-personal">
+        <div class="pagina-personal">
+            <div class="lado-foto">
+                <h1>A pie de taller</h1>
+                <p>Citas, hojas de trabajo y facturas en un solo sitio</p>
+            </div>
+
+            <div class="lado-form">
+                <div class="placa-login">
+                    <img class="logo-login" src="../assets/img/logo.png" alt="Logo Monkey Garage">
+                    <h2>Acceso del personal</h2>
+                    <p class="quien">Oficina, mecánicos y administración</p>
+
+                    <form>
+                        <div>
+                            <label for="codigo">Código de empleado</label>
+                            <input type="text" id="codigo" class="codigo" placeholder="OF01" autocomplete="username">
+                            <span class="ayuda-campo">El que te dio el administrador, por ejemplo MC02</span>
+                        </div>
+                        <div>
+                            <label for="password">Contraseña</label>
+                            <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+                        </div>
+                        <div class="errores" id="errores"></div>
+                        <button type="submit" class="entrar" id="btn-login">Entrar al taller</button>
+                    </form>
+
+                    <p class="nota">¿Olvidaste la contraseña? Pídesela al administrador.</p>
+                    <p class="cambiar">¿Eres cliente? <a href="../index.html">Entra por aquí</a></p>
+                </div>
+            </div>
+        </div>
+
+        <script src="../assets/js/api.js"></script>
+        <!-- Cuando exista, el JS de este login irá aquí: según el rol que devuelva el backend,
+             mandará a ../oficina/, ../mecanico/ o ../admin/ -->
+        <!-- <script src="../assets/js/login-personal.js"></script> -->
+    </body>
+</html>

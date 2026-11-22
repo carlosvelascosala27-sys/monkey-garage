@@ -1,0 +1,263 @@
+/* Login del personal (oficina, mecánicos y admin).
+   Las variables vienen de comun.css y panel-personal.css. */
+
+body.login-personal {
+    margin: 0;
+    background: var(--negro);
+    color: var(--blanco);
+    font-family: var(--fuente-texto);
+}
+
+.login-personal * {
+    box-sizing: border-box;
+}
+
+.login-personal h1,
+.login-personal h2,
+.login-personal p {
+    margin: 0;
+}
+
+.pagina-personal {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Mitad con la foto del equipo */
+.lado-foto {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 56px;
+    background: url('../img/imagen-izquierda-login.jpg') center / cover no-repeat;
+    background-color: var(--fondo);
+}
+
+.lado-foto::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0) 60%);
+}
+
+.lado-foto > * {
+    position: relative;
+}
+
+.lado-foto h1 {
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    font-size: 56px;
+}
+
+.lado-foto p {
+    margin-top: 8px;
+    font-size: 20px;
+    color: var(--verde-vivo);
+}
+
+/* Mitad con el formulario */
+.lado-form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: url('../img/imagen-derecha-login.jpg') center / cover no-repeat;
+    background-color: var(--fondo);
+}
+
+.placa-login {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 48px 44px;
+    background: url('../img/panel-login.png') center / 100% 100% no-repeat;
+}
+
+.placa-login .logo-login {
+    width: 160px;
+}
+
+.placa-login h2 {
+    font-family: var(--fuente-titulos);
+    font-weight: 400;
+    font-size: 34px;
+    text-align: center;
+}
+
+.placa-login .quien {
+    margin-top: -12px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.placa-login form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.placa-login label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* Anula el estilo general de input y button de comun.css */
+.placa-login input {
+    width: 100%;
+    min-height: 52px;
+    margin: 0;
+    padding: 12px 14px;
+    background: var(--negro);
+    color: var(--blanco);
+    border: 1px solid var(--borde-fuerte);
+    border-radius: 8px;
+    font-family: var(--fuente-texto);
+    font-size: 17px;
+}
+
+.placa-login input.codigo {
+    font-family: monospace;
+    font-size: 19px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.placa-login .ayuda-campo {
+    display: block;
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--blanco);
+    opacity: 0.75;
+}
+
+.placa-login .errores {
+    min-height: 22px;
+    color: var(--peligro);
+    font-size: 15px;
+    text-align: center;
+}
+
+.placa-login .entrar {
+    width: 100%;
+    min-height: 56px;
+    margin: 0;
+    border: 0;
+    border-radius: 8px;
+    background: var(--verde);
+    color: var(--negro);
+    font-family: var(--fuente-titulos);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.placa-login .entrar:hover {
+    background: var(--verde-vivo);
+}
+
+.placa-login .entrar:active {
+    transform: translateY(1px);
+}
+
+.placa-login input:focus-visible,
+.placa-login .entrar:focus-visible,
+.placa-login a:focus-visible {
+    outline: 2px solid var(--verde-vivo);
+    outline-offset: 2px;
+}
+
+.placa-login .nota {
+    font-size: 14px;
+    text-align: center;
+}
+
+.placa-login .cambiar {
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid var(--borde-fuerte);
+    font-size: 15px;
+    text-align: center;
+}
+
+.placa-login .cambiar a {
+    color: var(--verde-vivo);
+    font-weight: 600;
+}
+
+/* Tablet: la foto del equipo de fondo y la placa centrada */
+@media (max-width: 1024px) {
+    .pagina-personal {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        padding: 40px 24px;
+        background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.8)),
+            url('../img/imagen-izquierda-login.jpg') center / cover no-repeat;
+    }
+
+    .lado-foto,
+    .lado-form {
+        flex: none;
+        width: 100%;
+        padding: 0;
+        background: none;
+    }
+
+    .lado-foto::before {
+        display: none;
+    }
+
+    .lado-foto h1 {
+        font-size: 28px;
+        color: var(--verde-vivo);
+        text-align: center;
+    }
+
+    .lado-foto p {
+        display: none;
+    }
+
+    .placa-login .logo-login {
+        width: 140px;
+    }
+}
+
+/* Móvil: fondo del logo y la placa casi a todo el ancho */
+@media (max-width: 600px) {
+    .pagina-personal {
+        padding: 16px;
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.85)),
+            url('../img/imagen-derecha-login.jpg') center / cover no-repeat;
+    }
+
+    .lado-foto {
+        display: none;
+    }
+
+    .placa-login {
+        gap: 16px;
+        padding: 36px 24px;
+    }
+
+    .placa-login .logo-login {
+        width: 120px;
+    }
+
+    .placa-login h2 {
+        font-size: 26px;
+    }
+
+    .placa-login .quien {
+        margin-top: -8px;
+    }
+}

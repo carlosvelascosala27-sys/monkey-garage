@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Panel de administración de Monkey Garage: usuarios, repuestos y métricas del taller.">
+        <title>Monkey Garage - Administración</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/comun.css">
+        <link rel="stylesheet" href="../assets/css/panel-personal.css">
+    </head>
+    <body class="panel-personal">
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="logo">
+                    <img src="../assets/img/logo.png" alt="Logo Monkey Garage">
+                    <span>Monkey Garage</span>
+                </div>
+
+                <p class="seccion">Administración</p>
+                <nav>
+                    <a href="#" class="activo" data-seccion="resumen">Resumen</a>
+                    <a href="#" data-seccion="usuarios">Usuarios</a>
+                    <a href="#" data-seccion="repuestos">Repuestos <span class="contador" id="contador-repuestos">0</span></a>
+                </nav>
+
+                <div class="usuario">
+                    <span class="avatar" id="usuario-avatar"></span>
+                    <div>
+                        <strong id="usuario-nombre"></strong>
+                        <small id="usuario-login"></small>
+                    </div>
+                </div>
+                <button type="button" class="cerrar-sesion">Cerrar sesión</button>
+            </aside>
+
+            <main class="contenido">
+                <header class="cabecera">
+                    <div>
+                        <p class="ruta">Administración / Resumen</p>
+                        <h1>Estado del taller</h1>
+                    </div>
+                    <button type="button" class="btn btn-principal" id="btn-nuevo-usuario">+ Nuevo usuario</button>
+                </header>
+
+                <section class="tarjetas-resumen" data-seccion="resumen">
+                    <article class="tarjeta urgente">
+                        <p class="etiqueta">Poco stock</p>
+                        <strong class="valor" id="resumen-stock-bajo">0</strong>
+                        <small>Repuestos con menos de 10 uds</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Clientes</p>
+                        <strong class="valor" id="resumen-clientes">0</strong>
+                        <small id="resumen-vehiculos">0 vehículos registrados</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Citas</p>
+                        <strong class="valor" id="resumen-citas">0</strong>
+                        <small id="resumen-sin-confirmar">0 sin confirmar</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Facturado</p>
+                        <strong class="valor" id="resumen-facturado">0,00 €</strong>
+                        <small id="resumen-facturas">0 facturas, IVA incluido</small>
+                    </article>
+                </section>
+
+                <section class="bloque" data-seccion="resumen">
+                    <header class="cabecera-seccion">
+                        <h2>Citas por estado</h2>
+                        <span class="secundario" id="total-citas">0 citas</span>
+                    </header>
+
+                    <!-- El JS pone en cada span style.flex = número de citas de ese estado -->
+                    <div class="barra-estados" id="barra-estados" role="img" aria-label="Citas por estado">
+                        <span data-estado="pendiente"></span>
+                        <span data-estado="confirmada"></span>
+                        <span data-estado="en_reparacion"></span>
+                        <span data-estado="finalizada"></span>
+                        <span data-estado="cancelada"></span>
+                    </div>
+
+                    <ul class="leyenda">
+                        <li><span><span class="muestra pendiente"></span>Pendientes</span><strong id="estado-pendiente">0</strong></li>
+                        <li><span><span class="muestra confirmada"></span>Confirmadas</span><strong id="estado-confirmada">0</strong></li>
+                        <li><span><span class="muestra en_reparacion"></span>En reparación</span><strong id="estado-en_reparacion">0</strong></li>
+                        <li><span><span class="muestra finalizada"></span>Finalizadas</span><strong id="estado-finalizada">0</strong></li>
+                        <li><span><span class="muestra cancelada"></span>Canceladas</span><strong id="estado-cancelada">0</strong></li>
+                    </ul>
+                </section>
+
+                <div class="columnas iguales">
+                    <section class="bloque" data-seccion="resumen">
+                        <header class="cabecera-seccion">
+                            <h2>Horas por mecánico</h2>
+                        </header>
+
+                        <!-- Ejemplo de cada fila (el ancho del relleno es el % respecto al que más horas tiene):
+                        <div class="metrica">
+                            <span>Lucía Ferrer</span>
+                            <div class="pista"><div class="relleno" style="width: 100%"></div></div>
+                            <strong class="numero">7,5 h</strong>
+                        </div>
+                        -->
+                        <div id="lista-horas"></div>
+                    </section>
+
+                    <section class="bloque destacado" data-seccion="repuestos">
+                        <header class="cabecera-seccion">
+                            <h2>Repuestos con poco stock</h2>
+                            <a href="#">Ver catálogo</a>
+                        </header>
+
+                        <!-- Ejemplo de cada li:
+                        <li>
+                            <div><strong>Kit de embrague</strong><span class="secundario">KIT-EMB, 260,00 €</span></div>
+                            <span class="stock-bajo">3 uds</span>
+                        </li>
+                        -->
+                        <ul class="lista" id="lista-stock-bajo"></ul>
+                    </section>
+                </div>
+
+                <section class="bloque" data-seccion="usuarios">
+                    <header class="cabecera-seccion">
+                        <h2>Usuarios</h2>
+                        <input id="buscar-usuario" class="buscador" type="search" placeholder="Buscar por login o nombre" aria-label="Buscar usuario">
+                    </header>
+
+                    <nav class="filtros" id="filtros-rol" aria-label="Filtrar por rol" style="margin-bottom: 12px">
+                        <a href="#" class="activo" data-rol="">Todos</a>
+                        <a href="#" data-rol="admin">Admin</a>
+                        <a href="#" data-rol="oficina">Oficina</a>
+                        <a href="#" data-rol="mecanico">Mecánico</a>
+                        <a href="#" data-rol="cliente">Cliente</a>
+                    </nav>
+
+                    <p id="mensaje-usuarios" class="mensaje"></p>
+
+                    <div class="tabla-contenedor">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Login</th>
+                                    <th>Nombre</th>
+                                    <th>Rol</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <!-- Ejemplo de cada fila:
+                            <tr>
+                                <td><strong>OF01</strong></td>
+                                <td>Laura Gómez</td>
+                                <td><span class="rol">Oficina</span></td>
+                                <td class="numero">
+                                    <button type="button" class="btn-texto">Borrar</button>
+                                    <button type="button" class="btn btn-secundario btn-pequeno">Editar</button>
+                                </td>
+                            </tr>
+                            -->
+                            <tbody id="tabla-usuarios"></tbody>
+                        </table>
+                    </div>
+
+                    <nav class="paginador" id="paginador-usuarios" aria-label="Páginas"></nav>
+                </section>
+            </main>
+        </div>
+
+        <div id="modal-usuario" class="modal-fondo">
+            <div class="modal-caja">
+                <button type="button" id="cerrar-modal-usuario" class="modal-cerrar" aria-label="Cerrar">X</button>
+                <div id="contenido-modal-usuario"></div>
+            </div>
+        </div>
+
+        <script src="../assets/js/api.js"></script>
+        <!-- <script src="../assets/js/admin.js"></script> -->
+    </body>
+</html>

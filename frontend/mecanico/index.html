@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Panel del mecánico de Monkey Garage: hoja de trabajo, horas y piezas.">
+        <title>Monkey Garage - Panel del mecánico</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css/comun.css">
+        <link rel="stylesheet" href="../assets/css/panel-personal.css">
+    </head>
+    <body class="panel-personal">
+        <div class="layout">
+            <aside class="sidebar">
+                <div class="logo">
+                    <img src="../assets/img/logo.png" alt="Logo Monkey Garage">
+                    <span>Monkey Garage</span>
+                </div>
+
+                <p class="seccion">Taller</p>
+                <nav>
+                    <a href="#" class="activo" data-seccion="resumen">Mi jornada</a>
+                    <a href="#" data-seccion="hoja">Hoja de trabajo</a>
+                    <a href="#" data-seccion="historial">Historial</a>
+                </nav>
+
+                <div class="usuario">
+                    <span class="avatar" id="usuario-avatar"></span>
+                    <div>
+                        <strong id="usuario-nombre"></strong>
+                        <small id="usuario-login"></small>
+                    </div>
+                </div>
+                <button type="button" class="cerrar-sesion">Cerrar sesión</button>
+            </aside>
+
+            <main class="contenido">
+                <header class="cabecera">
+                    <div>
+                        <p class="ruta">Taller / Mi jornada</p>
+                        <h1>Buenos días, <span id="nombre-usuario"></span></h1>
+                    </div>
+                </header>
+
+                <section class="tarjetas-resumen tres" data-seccion="resumen">
+                    <article class="tarjeta urgente">
+                        <p class="etiqueta">En curso</p>
+                        <strong class="valor" id="resumen-en-curso">0</strong>
+                        <small id="resumen-en-curso-vehiculo">Ningún vehículo</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Próximo trabajo</p>
+                        <strong class="valor" id="resumen-proximo">-</strong>
+                        <small id="resumen-proximo-detalle">Sin citas asignadas</small>
+                    </article>
+                    <article class="tarjeta">
+                        <p class="etiqueta">Horas este mes</p>
+                        <strong class="valor" id="resumen-horas">0 h</strong>
+                        <small id="resumen-horas-citas">En 0 citas</small>
+                    </article>
+                </section>
+
+                <div class="columnas">
+                    <section class="bloque destacado" data-seccion="hoja">
+                        <p id="hoja-vacia" class="vacio" hidden>No tienes ninguna reparación en curso.</p>
+
+                        <div id="hoja-contenido">
+                            <header class="cabecera-seccion">
+                                <div>
+                                    <p class="secundario" id="hoja-cita">Hoja de trabajo</p>
+                                    <h2 id="hoja-motivo"></h2>
+                                </div>
+                                <span class="estado" id="hoja-estado"></span>
+                            </header>
+
+                            <div class="ficha-vehiculo">
+                                <span class="matricula grande" id="hoja-matricula"></span>
+                                <div>
+                                    <strong id="hoja-vehiculo"></strong>
+                                    <span class="secundario" id="hoja-detalle-vehiculo"></span>
+                                </div>
+                                <div class="cliente">
+                                    <strong id="hoja-cliente"></strong>
+                                    <span class="secundario" id="hoja-entrada"></span>
+                                </div>
+                            </div>
+
+                            <ol class="progreso" id="hoja-progreso">
+                                <li data-estado="pendiente">Pendiente</li>
+                                <li data-estado="confirmada">Confirmada</li>
+                                <li data-estado="en_reparacion">En reparación</li>
+                                <li data-estado="finalizada">Finalizada</li>
+                            </ol>
+
+                            <div class="dos-campos">
+                                <div>
+                                    <p class="etiqueta-campo">Horas trabajadas</p>
+                                    <div class="horas-control">
+                                        <button type="button" id="btn-restar-horas" aria-label="Restar media hora">−</button>
+                                        <output id="horas-trabajadas">0 h</output>
+                                        <button type="button" id="btn-sumar-horas" aria-label="Sumar media hora">+</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="etiqueta-campo" for="hoja-km">Kilómetros del vehículo</label>
+                                    <input id="hoja-km" type="number" min="0">
+                                </div>
+                            </div>
+
+                            <h3>Piezas usadas</h3>
+                            <div class="tabla-contenedor">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Pieza</th>
+                                            <th class="col-extra">Referencia</th>
+                                            <th class="numero">Cantidad</th>
+                                            <th class="numero">Importe</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <!-- Ejemplo de cada fila:
+                                    <tr>
+                                        <td>Escobillas limpiaparabrisas</td>
+                                        <td class="secundario col-extra">ESC-LIMP</td>
+                                        <td class="numero">1</td>
+                                        <td class="numero">22,00 €</td>
+                                        <td class="numero"><button type="button" class="btn-texto">Quitar</button></td>
+                                    </tr>
+                                    -->
+                                    <tbody id="hoja-piezas"></tbody>
+                                </table>
+                            </div>
+
+                            <div class="anadir-pieza">
+                                <div>
+                                    <label class="etiqueta-campo" for="select-repuesto">Añadir pieza</label>
+                                    <select id="select-repuesto"></select>
+                                </div>
+                                <div>
+                                    <label class="etiqueta-campo" for="cantidad-repuesto">Cantidad</label>
+                                    <input id="cantidad-repuesto" type="number" value="1" min="1">
+                                </div>
+                                <button type="button" class="btn btn-secundario" id="btn-anadir-pieza">Añadir</button>
+                            </div>
+
+                            <p id="mensaje-hoja" class="mensaje" style="margin-top: 16px"></p>
+
+                            <div class="pie-hoja">
+                                <p>Materiales: <strong class="total" id="hoja-materiales">0,00 €</strong></p>
+                                <div class="acciones">
+                                    <button type="button" class="btn-texto" id="btn-guardar-hoja">Guardar sin terminar</button>
+                                    <button type="button" class="btn btn-principal" id="btn-finalizar">Marcar como finalizada</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div>
+                        <section class="bloque" data-seccion="historial">
+                            <header class="cabecera-seccion">
+                                <h2>Mis trabajos</h2>
+                            </header>
+
+                            <!-- Ejemplo de cada li (pasos: 2 hechos = confirmada, 3 = en reparación, 4 = finalizada):
+                            <li>
+                                <div><strong>Peugeot 208</strong><span class="secundario">05/11, 10:00, revisión 60.000 km</span></div>
+                                <div class="pasos" role="img" aria-label="Paso 2 de 4: confirmada">
+                                    <span class="hecho"></span><span class="hecho"></span><span></span><span></span>
+                                </div>
+                            </li>
+                            -->
+                            <ul class="lista" id="lista-trabajos"></ul>
+                        </section>
+
+                        <section class="bloque" data-seccion="hoja">
+                            <header class="cabecera-seccion">
+                                <h2>Consultar stock</h2>
+                            </header>
+
+                            <label class="etiqueta-campo" for="buscar-repuesto">Buscar pieza o referencia</label>
+                            <input id="buscar-repuesto" type="search" placeholder="Ej. KIT-EMB">
+
+                            <!-- Ejemplo de cada li (stock-bajo si quedan menos de 10):
+                            <li>
+                                <div><strong>Kit de embrague</strong><span class="secundario">KIT-EMB</span></div>
+                                <span class="stock-bajo">3 uds</span>
+                            </li>
+                            -->
+                            <ul class="lista" id="lista-stock"></ul>
+                        </section>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <script src="../assets/js/api.js"></script>
+        <!-- <script src="../assets/js/mecanico.js"></script> -->
+    </body>
+</html>
